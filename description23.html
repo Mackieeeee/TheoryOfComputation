@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #e8e9ff;
+
+    }
+
+    .box1 {
+        background: #afb1e3;
+        width: 50%;
+        margin-left: 30px;
+        border-radius: 10px;
+
+    }
+
+
+    .box {
+        background: #afb1e3;
+        width: 90%;
+        margin-left: 30px;
+        border-radius: 10px;
+        font-size: 18px;
+       font-style: monospace;
+
+    }
+
+    p {
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+
+    h1 {
+        text-align: justify;
+        color: #03074a
+    }
+
+    h2 {
+        text-align: justify;
+        color: #03074a;
+    }
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h3 {
+        text-align: justify;
+        color: #03074a;
+        text-align: center;
+    }
+
+    ul {
+        font-size: 20px;
+        font-style: monospace;
+    }
+
+    table,
+    th,
+    td {
+        font-size: 20px;
+        font-style: oblique;
+        text-align: center;
+        border: 2px solid #000;
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    ol{
+    font-size: 20px;
+    font-style: oblique;
+}
+</style>
+
+<body>
+    <h1>Mealy and Moore Machines in TOC</h1><br>
+    <p><b>Moore Machines</b> are finite state machines with output value and its output depends only on the present
+        state. It can be defined as (Q, q0, ∑, O, δ, λ) where:</p><br>
+    <ul>
+        <li>Q is a finite set of states.</li>
+        <li>q0 is the initial state.</li>
+        <li>∑ is the input alphabet.</li>
+        <li>O is the output alphabet.</li>
+        <li>δ is transition function which maps Q×∑ → Q.</li>
+        <li>λ is the output function which maps Q → O.</li>
+    </ul><br>
+    <img src="pictures/1-43.jpg"><br>
+    <h3>Figure 1</h3><br>
+    <p>In the Moore machine shown in Figure 1, the output is represented with each input state separated by /. The
+        length of output for a Moore machine is greater than input by 1.</p><br>
+    <ul>
+        <li><b>Input:</b> 11</li>
+        <li><b>Transition:</b> δ (q0,11)=> δ(q2,1)=>q2</li>
+        <li><b>Output:</b> 000 (0 for q0, 0 for q2 and again 0 for q2)</li>
+    </ul>
+    <p><b>Mealy Machines:</b> Mealy machines are also finite state machines with output value and its output depends on
+        the present state and current input symbol. It can be defined as (Q, q0, ∑, O, δ, λ’) where:</p><br>
+    <ul>
+        <li>Q is a finite set of states.</li>
+        <li>q0 is the initial state.</li>
+        <li>∑ is the input alphabet.</li>
+        <li>O is the output alphabet.</li>
+        <li>δ is the transition function which maps Q×∑ → Q.</li>
+        <li>‘λ’ is the output function that maps Q×∑→ O.</li>
+    </ul><br>
+    <img src="pictures/2-39.jpg"><br>
+    <h3>Figure 2</h3><br>
+    <p>In the mealy machine shown in Figure 1, the output is represented with each input symbol for each state separated
+        by /. The length of output for a mealy machine is equal to the length of input.</p><br>
+    <ul>
+        <li><b>Input:</b>11</li>
+        <li><b>Transition:</b> δ (q0,11)=> δ(q2,1)=>q2</li>
+        <li><b>Output:</b> 00 (q0 to q2 transition has Output 0 and q2 to q2 transition also has Output 0)</li>
+    </ul><br>
+    <div class="box"><b>NOTE:</b> <i>If there are n inputs in the Mealy machine then it generates n outputs while if there are n
+            inputs in the Moore machine then it generates n + 1 outputs.</div></i> </p><br>
+    <h3>Conversion from Mealy to Moore Machine</h3><br>
+    <p>Let us take the transition table of the mealy machine shown in Figure 2.</p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th></th>
+            <th>Input=1</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Present State</td>
+            <td>Next State</td>
+            <td>Output</td>
+            <td>Next State</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td>q1</td>
+            <td>0</td>
+            <td>q2</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q1</td>
+            <td>q1</td>
+            <td>0</td>
+            <td>q2</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>q2</td>
+            <td>q1</td>
+            <td>1</td>
+            <td>q2</td>
+            <td>0</td>
+        </tr>
+    </table><br>
+    <h3>Table 1</h3><br>
+    <p>
+        <b>Step 1.</b> First find out those states which have more than 1 output associated with them. q1 and q2 are the states which have both output 0 and 1 associated with them.<br>
+
+<b>Step 2.</b> Create two states for these states. For q1, two states will be q10 (state with output 0) and q11 (state with output 1). Similarly, for q2, two states will be q20 and q21.<br>
+
+<b>Step 3.</b> Create an empty moore machine with newly generated state. For more machines, Output will be associated to  each state irrespective of inputs.<br>
+    </p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th>Input=1</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Present State</td>
+            <td>Next State	</td>
+            <td>Next State</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q10</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q11</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q20</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q21</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table><br>
+    <h3>Table 2</h3><br>
+    <p><b>Step 4.</b> Fill the entries of next state using mealy machine transition table shown in Table 1. For q0 on input 0,  next state is q10 (q1 with output 0). Similarly, for q0 on input 1, next state is q20 (q2 with output 0). For q1 (both q10 and q11) on input 0, next state is q10. Similarly, for q1(both q10 and q11), next state is q21.  For q10, output will be 0 and  for q11, output will be 1. Similarly, other entries can be filled.</p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th>Input=1</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Present State	</td>
+            <td>Next State</td>
+            <td>Next State</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td>q10</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q10</td>
+            <td>q10</td>
+            <td>q10</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q11</td>
+            <td>q10</td>
+            <td>q21</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>q20</td>
+            <td>q11</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q21</td>
+            <td>q11</td>
+            <td>q20</td>
+            <td>1</td>
+        </tr>
+    </table><br>
+    <h3>Table 3</h3><br>
+    <p>This is the transition table of moore machine shown in Figure 1.</p><br>
+    <h3>Conversion from Moore machine to mealy machine</h3><br>
+    <p>Let us take the moore machine of Figure 1 and its transition table is shown in Table 3. <b>Step 1.</b> Construct an empty mealy machine using all states of moore machine as shown in Table 4.</p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th></th>
+            <th>Input=1</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Present State</td>
+            <td>Next State</td>
+            <td>Output</td>
+            <td>Next State</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q10</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q11</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q20</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q21</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table><br>
+    <h3>Table 4</h3><br>
+    <p><b>Step 2:</b> Next state for each state can also be directly found from Moore machine transition Table as:</p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th></th>
+            <th>Input=1</th>
+        </tr>
+        <tr>
+            <td>Present State</td>
+            <td>Next State</td>
+            <td>Output</td>
+            <td>Next State</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td>q10</td>
+            <td></td>
+            <td>q20</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q10</td>
+            <td>q10</td>
+            <td></td>
+            <td>q21</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q21</td>
+            <td>q10</td>
+            <td></td>
+            <td>q21</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q20 </td>
+            <td>q11</td>
+            <td></td>
+            <td>q20</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>q21</td>
+            <td>q11</td>
+            <td></td>
+            <td>q20</td>
+            <td></td>
+        </tr>
+    </table><br>
+    <h3>Table 5</h3><br>
+    <p><b>Step 3:</b> As we can see output corresponds to each input in Moore machine transition table. Use this to fill the Output entries. e.g.; Output corresponding to q10, q11, q20 and q21 are 0, 1, 0 and 1 respectively.</p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th></th>
+            <th>Input=1</th>
+        </tr>
+        <tr>
+            <td>Present State</td>
+            <td>Next State</td>
+            <td>Output</td>
+            <td>Next State</td>
+            <td>	Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td>q10</td>
+            <td>0</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q10</td>
+            <td>q10</td>
+            <td>0</td>
+            <td>q21</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>q11</td>
+            <td>q10</td>
+            <td>0</td>
+            <td>q21</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>q20</td>
+            <td>q11</td>
+            <td>1</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q21</td>
+            <td>q11</td>
+            <td>1</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+    </table><br>
+    <h3>Table 6</h3><br>
+    <p><b>Step 4:</b>  As we can see from table 6, q10 and q11 are similar to each other (same value of next state and Output for different Inputs). Similarly, q20 and q21 are also similar. So, q11 and q21 can be eliminated.</p><br>
+    <table>
+        <tr>
+            <th></th>
+            <th>Input=0</th>
+            <th></th>
+            <th>Input=1</th>
+        </tr>
+        <tr>
+            <td>Present State</td>
+            <td>Next State</td>
+            <td>Output</td>
+            <td>Next State</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>q0</td>
+            <td>q10</td>
+            <td>0</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>q10</td>
+            <td>q10</td>
+            <td>0</td>
+            <td>q21</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>q20</td>
+            <td>q11</td>
+            <td>1</td>
+            <td>q20</td>
+            <td>0</td>
+        </tr>
+
+    </table><br>
+    <h3>Table 7</h3><br>
+    <p>This is the same mealy machine shown in Table 1. So we have converted mealy to Moore machine and converted back moore to mealy.</p><br>
+    <div class="box">Note: Number of statAes in the mealy machine can’t be greater than number  of states in moore machine.</div><br>
+    <p><b>Example:</b> The Finite state machine is described by the following state diagram with A as starting state, where an arc label is x / y and x stands for 1-bit input and y stands for 2-bit output?</p><br>
+    <img src="pictures/3-28.jpg"><br>
+    <p>Outputs the sum of the present and the previous bits of the input. </p><br>
+    <ol>
+        <li>Outputs 01 whenever the input sequence contains 11.</li>
+        <li>Outputs 00 whenever the input sequence contains 10.</li>
+        <li>None of these.</li>
+    </ol><br>
+    <p><b>Solution:</b> Let us take different inputs and its output and check which option works:<br>
+
+        <b>Input:</b> 01<br>
+        
+        <b>Output:</b> 00 01  (For 0, Output is 00 and state is A. Then, for 1, Output is 01 and state will be B)<br>
+        
+        <b>Input:</b> 11<br>
+        
+        <b>Output:</b> 01 10 (For 1, Output is 01 and state is B. Then, for 1, Output is 10 and state is C)<br>
+        
+        As we can see, it is giving the binary sum of the present and previous bit. For the first bit, the previous bit is taken as 0.</p><br>
+
+</body>
+
+</html>

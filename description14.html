@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+.box1{
+        background: #afb1e3;
+       width: 50%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+.box{
+       background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+h1{
+        text-align:justify;
+        color:#03074a
+    }
+h2{
+        text-align:justify;
+        color:#03074a;
+    }
+img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+.p1{
+        font-style: courier;
+        font-size: 17px;
+    }
+h3{
+        text-align:justify;
+        color:#03074a;
+    }
+    
+
+</style>
+<body>
+    <h1>Designing Deterministic Finite Automata (Set 1)</h1><br>
+    <p>Prerequisite – Designing finite automata In this article, we will see some designing of Deterministic Finite Automata (DFA). </p><br>
+    <p><b>Problem-1:</b> Construction of a DFA for the set of string over {a, b} such that length of the string |w|=2 i.e, length of the string is exactly 2. <b>Explanation</b> – The desired language will be like:</p><br>
+    <div class="box">L = {aa, ab, ba, bb}</div><br>
+    <p>The state transition diagram of the language will be like:</p><br>
+    <img src="pictures/TOC2.png" alt=""><br>
+    <p>State A represents the set of all strings with length zero (0), State B represents the set of all strings with length one (1), and State C represents the set of all strings with length two (2). State C is the final state, while D is the dead state; this is because after receiving any letter as input, it will never enter the final state.</p><br>
+    <div class="box">Number of states: n+2<br>
+        Where n is |w|=n</div><br>
+        <p>The above automata will accept all strings with a length of exactly two. When the string length is 1, it will move from state A to state B. When the length of the string is 2, it will go from state B to C; if the length of the string is larger than 2, it will move from state C to D (dead state), and then from state D to D itself. </p><br>
+        <h3>Python3</h3><br>
+        <div class="p1">
+            <div class="box1">
+            #check string in<br>
+            #in state A<br>
+            def checkStateA(n):<br><br>&nbsp;
+                 
+                #if length of<br>&nbsp;
+                #string is one<br>&nbsp;
+                #print not accepted<br>&nbsp;
+                if(len(n)==1):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    print("string not accepted")<br>&nbsp;
+                else:<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    #pass string to stateB to<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    #to check further transitions<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    if(n[0]=='a' or n[0]=='b'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        stateB(n[1:])<br><br>
+                         
+                         
+            def stateB(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                #here if length<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                #is not 1 print#string not accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                if(len(n)!=1):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    print("string not accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    #else pass string<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    #to state c<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    stateC(n[1:])<br>
+            def stateC(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                #here if length<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                #becomes zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                #print accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                #else not accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                if (len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    print("string accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    print("string not accepted")<br><br>
+                 
+                 
+            #take input<br>   
+            n=input()<br>
+            checkStateA(n)</div></div><br>
+            <p><b>Problem-2:</b> Construction of a DFA for the set of string over {a, b} such that length of the string |w|>=2 i.e, length of the string should be at least 2. <b>Explanation</b> – The desired language will be like:</p><br>
+            <div class="box">L = {aa, ab, ba, bb, aaa, aab, aba, abb........}</div><br>
+            <p>The state transition diagram of the language will be like:</p><br>
+            <img src="pictures/TOC.png" alt=""><br>
+            <p>Here, State A represent set of all string of length zero (0), state B represent set of all string of length one (1), and state C represent set of all string of length two (2).</p><br>
+            <div class="box">Number of states: n+1<br>
+                Where n is |w|>=n </div><br>
+                <p>The above automata will accept all strings with a length of at least two. When the string length is 1, it will move from state A to state B. When the string length is 2, it will go from state B to C, and when the string length is larger than 2, it will move from state C to C itself. </p><br>
+                <h3>Python3</h3><br>
+                <div class="p1">
+                    <div class="box1">
+                    #check string in<br>
+                    #in state A<br>
+                    def checkStateA(n):<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         
+                        #if length of<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #string is one<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #print not accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        if(len(n)==1):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            print("string not accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        else:<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            #pass string to stateB to<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            #to check further transitions<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            if(n[0]=='a' or n[0]=='b'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                stateB(n[1:])<br><br>
+                                 
+                                 
+                    def stateB(n):<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         
+                        #here if length<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #is less than 1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #printstring not accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        if(len(n)<1):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            print("string not accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        else:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             
+                            #else pass string<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            #to state c<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            stateC(n[1:])<br><br>
+                             
+                             
+                    def stateC(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #here if length of string<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #is greater than equal to zero<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #print accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #else not accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        if (len(n)>=0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            print("string accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            print("string not accepted")<br><br>
+                         
+                         
+                    #take input   <br>
+                    n=input()<br>
+                    checkStateA(n)</div></div><br>
+
+                    <p><b>Problem-3:</b> Construction of a DFA for the set of string over {a, b} such that length of the string |w|<=2 i.e, length of the string is atmost 2.<br>
+                        <b>Explanation –</b> The desired language will be like:</p><br>
+                        <div class="box">L = {?, aa, ab, ba, bb} </div><br>
+                        <p>The state transition diagram of the language will be like:</p><br>
+                        <img src="pictures/TOC1.png" alt=""><br>
+                        <p>State A represents the set of all strings of length zero (0), state B represents the set of all strings of length one (1), and state C represents the set of all strings of length two (2). States A, B, and C are the final states, while state D is the dead state.</p><br>
+                        <div class="box">Number of states: n+2<br>
+                            Where n is |w|<=n </div><br>
+                           <p>The above automata will accept all the strings having the length of the string at most 2. When the length of the string is 1, then it will go from state A to B. When the length of the string is 2, then it will go from state B to C and lastly when the length of the string is greater than 2, then it will go from state C to D (Dead state). </p><br>
+                           <h3>Python3</h3><br>
+                           <div class="p1">
+                            <div class="box1">
+                            
+#check string in<br>
+#in state A<br>
+def checkStateA(n):<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+    #if only two transition occurs<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    #then print string accepted<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   
+    if(n[0]=='a' or n[0]=='b'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateB(n[1:])<br><br>
+             
+             
+def stateB(n):<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+    #if length is 0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    #print accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("string accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateC(n[1:])<br><br>
+         
+         
+def stateC(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    #if length is 0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    #print accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    #else not accepted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if (len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("string accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("string not accepted")<br><br>
+     
+     
+#take input<br>   
+n=input()<br>
+checkStateA(n)<br>
+</div></div>
+
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #e8e9ff;
+
+    }
+
+    .box1 {
+        background: #afb1e3;
+        width: 50%;
+        margin-left: 30px;
+        border-radius: 10px;
+
+    }
+
+
+    .box {
+        background: #afb1e3;
+        width: 90%;
+        margin-left: 30px;
+        border-radius: 10px;
+        font-size: 18px;
+       font-style: monospace;
+        
+
+    }
+
+    p {
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+
+    h1 {
+        text-align: justify;
+        color: #03074a
+    }
+
+    h2 {
+        text-align: justify;
+        color: #03074a;
+    }
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h3 {
+        text-align: justify;
+        color: #03074a;
+    }
+
+    ul {
+        font-size: 20px;
+        font-style: monospace;
+    }
+</style>
+
+<body>
+    <h1>Star Height of Regular Expression and Regular Language</h1><br>
+    <p>The star height is related to the theory of computing (TOC) topic. It denotes the structural complexity of
+        regular expressions and regular languages. In this case, complexity refers to the maximum nesting depth of
+        Kleene stars in a regular expression. It should be noted that a regular language can be expressed by non-unique
+        but similar regular expressions. The star heights of these regular expressions may vary based on their
+        structural complexity (i.e. nesting). But star height of a regular language is a unique number and is equal to
+        the least star height of any regular expression representing that language. In this context generalized star
+        height is an appropriate terminology, that defines the minimum nesting depth of Kleene stars to describe the
+        language by means of a generalized regular expression. For example: The language “aba” over the set of alphabets
+        {a, b} can be generated using regular expressions,</p><br>
+    <div class="box">(a + b)* ...... (1) Star height = 1<br>
+        (a* b*)* ...... (2) Star height = 2</div>><br>
+    <p>But we consider the least star height. Therefore the star height of the regular language “aba” is one. Star
+        height is also defined for regular expressions as the maximum nesting depth of Kleene stars appearing in that
+        expression. In order to state star height, “h” of a regular expression formally, one can write as, h(&phi; ) = 0,
+        where &phi; is the empty set h(&epsilon; ) = 0, where &epsilon; is the empty string h(t) = 0, where t may be any
+        terminal symbol of an alphabet set h(EF) = max(h(E), h(F)), where E, F denotes regular expressions h(E*) = h(E)
+        + 1 Some examples are:</p><br>
+    <ul>
+        <li>h(a*(b a*)*) = 2</li>
+        <li>h((a b*) + ((a* a b*)*b)*) = 3</li>
+        <li>h(a) = 0</li>
+    </ul><br>
+    <p>Prof. Eggan attempted to establish a link between the loop complexity of an automaton that accepts a language L
+        and the language's star height, L. The smallest loop complexity of an automaton that accepts, L, is equal to the
+        star height of a language, L. It can also be stated that the loop complexity of an automata that is both
+        accessible and co-accessible is the minimum of regular expression star heights obtained by different possible
+        executions of the state elimination method (or BMC algorithm). It is obvious that a regular language with star
+        height zero can only represent a finite number of regular languages. According to the generalized star height,
+        taking complement of a regular expression does not result in an increase in star height. This consideration
+        generates intriguing outcomes.</p><br>
+    <div class="box">h(x(x + y)*x+x) = 1, since only one level of Kleene nesting exists</div>><br>
+    <p>But the same language can also be represented by the regular expression x &phi; ^c x + x, because &phi; ^c
+        denotes set of all strings over the input alphabets.</p><br>
+        <div class="box">Now, h(x &phi;^c x + x) = 0, as no Kleene nesting present</div>><br>
+        <p>Therefore the generalized star height of the language is 0 even though its star height is 1.</p><br>
+        <h2>Advantages of considering the star height:</h2><br>
+        <p><b>Complexity analysis:</b>
+            The star height measures the difficulty of repetition in regular expressions or languages. By evaluating the star height, we can measure the complexity of activities related with regular expressions or languages, such as pattern matching, parsing, and automaton generation. It aids in the evaluation of the efficacy and practicality of algorithms and implementations.<br><br>
+            <b>Expressive power assessment:</b> The height of the star provides information about the expressive capability of regular expressions or languages. Higher star heights indicate more repeating nesting, which allows for the representation of more complicated patterns or languages. We can comprehend the expressive capacities of regular expressions or languages and their ability to represent various linguistic structures by considering the star height.<br><br>
+            <b>Design considerations:</b>The star height influences the design concerns for implementing regular expression or language algorithms and data structures. The algorithm or data format used may alter depending on the star height. Finite automata, for example, may suffice for regular languages with low star height, whereas more expressive formalisms such as pushdown automata may be required for regular languages with higher star height.
+        </p><br>
+        <h2>Disadvantages of considering the star height:</h2><br>
+        <p><b>Limited to regular languages</b>Regular expressions and regular languages are the only ones that can use the concept of star height. It cannot be used to explicitly analyze or compare the complexity of languages other than those in the regular language class, such as context-free or context-sensitive languages. Different measures or procedures must be used for more complicated languages.<br><br>
+            <b>Overemphasis on repetition:</b>The intricacy of repetition in regular expressions or languages is especially addressed by the star height. While repetition is significant, other language structures such as nested parentheses, balance rules, and context-sensitivity may also be important in particular situations. The star height may not represent these features, resulting in a skewed sense of the language's complexities.<br><br>
+            <b>Computational limitations:</b>Determining the star height of a regular expression or language can be time consuming. In general, the star height problem is undecidable, which means there is no algorithm that can determine the star height for any arbitrary regular expression or language. While there are approaches for certain circumstances, computational complexity can be an issue, especially for large or sophisticated regular expressions or languages.<br><br>
+            <b>Complexity may not correlate with real-world applications:</b>While the star height gives information about the intricacy of repetition, it may not necessarily be immediately related to real-world applications. The practical difficulty of regular expressions or languages can be determined by a number of factors, such as the nature of the input data, the unique problem domain, and the efficacy of algorithmic optimizations. These elements may not be fully captured by the star height alone.<br><br>
+        </p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+    .box1{
+       background: #afb1e3;
+       width: 50%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+
+    
+.box{
+       background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+h1{
+        text-align:justify;
+        color:#03074a
+    }
+h2{
+        text-align:justify;
+        color:#03074a;
+    }
+img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h3{
+        text-align:justify;
+        color:#03074a;
+    }
+    .p1{
+        font-style: courier;
+        font-size: 17px;
+    }
+
+</style>
+<body>
+    <h1>Designing Deterministic Finite Automata (Set 2)</h1><br>
+
+
+    <p>Prerequisite – <a href="description8.html" target="description">Designing finite automata</a>, previous article: Designing Deterministic Finite Automata (Set 1)</p><br>
+   <p>In this article, we will see some designing of Deterministic Finite Automata (DFA).<br><br>
+
+    <b>Problem-1:</b> Construction of a DFA for the set of string over {a, b} such that length of <br>
+    the string |w| is divisible by 2 i.e, |w| mod 2 = 0.<br><br>
+
+    <b>Explanation – </b>The desired language will be like:<br><br>
+    
+<div class="box">L = {?, aa, ab, ba, bb, aaaa, bbbb, ............} </div><br>
+<p>The state transition diagram of the language will be like:</p><br>
+</p>
+<img src="pictures/TOC3.png" alt="" width="50%"><br>
+    <p>Here, state A represent set of all string of length even (0, 2, 4, …), and state B<br>
+         represent set of all string of length odd (1, 3, 5, …).<br><br>
+         <div class="box">Number of states: n<br>
+If |W| mod n = 0 </div><br><br>
+
+    </p>
+    <div class="p1">
+        <div class="box">
+            
+def stateA(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    print("Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else:<br><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+    #on any input call function stateB<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateB(n[1:])<br><br>
+      
+def stateB(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    print("Not Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+     #on any input call function stateA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateA(n[1:])<br><br><br>        
+
+
+
+#take input<br>
+n=input()<br><br>
+
+#call stateA<br>
+#to check the input<br>
+stateA(n)<br>
+        </div>
+
+    </div>
+    <p>
+        The above automata will accept all the strings having the length of the string divisible by 2.<br>
+         When the length of the string is 1, then it will go from state A to B. When the length of the string is 2, <br>
+         then it will go from state B to A and so on. State A is the final state i.e, it accept all the string having length divisible by 2.<br>    
+
+        <b>Problem-2:</b> Construction of a DFA for the set of string over {a, b} such that length of <br>
+         the string |w| is not divisible by 2 i.e, |w| mod 2 = 1.<br><br>
+        <b>Explanation –</b> The desired language will be like:</p><br>
+        <div class="box">L = {a, b, aaa, aab, aba, abb, aaaaa, bbbb, .......} <br><br></div>
+<p>The state transition diagram of the language will be like:</p><br>
+
+
+<p>The above automata will accept all the strings having the length of the string divisible by 2. When the length of the string is 1, then it will go from state A to B. 
+When the length of the string is 2, then it will go from state B to A and so on. State A is the final state i.e, it accept all the string having length divisible by 2.<br><br>
+
+<b>Problem-2:</b> Construction of a DFA for the set of string over {a, b} such that length of the string |w| is not divisible by 2 i.e, |w| mod 2 = 1.<br>
+
+<b>Explanation – </b>The desired language will be like:<br><br>
+
+<div class="box">L = {a, b, aaa, aab, aba, abb, aaaaa, bbbb, .......} </div><br>
+<p>The state transition diagram of the language will be like:</p><br>
+    </p>
+    <img src="pictures/TOC13.png" alt="" width="50%"><br>
+    <p>Here, state A represent set of all string of length even (0, 2, 4, …),<br> 
+        and state B represent set of all string of length odd (1, 3, 5, …).<br></p>
+
+        <div class="p1">
+            <div class="box">
+                def stateA(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("Not Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+        #on any input call function stateB<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            stateB(n[1:])<br>
+          
+def stateB(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+         #on any input call function stateA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            stateA(n[1:])      <br>  
+  
+  
+  
+#take input<br>
+n=input()<br>
+  
+#call stateA<br>
+#to check the input<br>
+stateA(n)<br>
+</div>
+</div>
+<p>
+    The above automata will accept all the strings having the length of the string not divisible by 2. When the length of the string is 1, <br>
+    then it will go from state A to B. When the length of the string is 2, then it will go from state B to A and so on. <br>
+    State B is the final state i.e, it accept all the string having length not divisible by 2.<br>
+
+<b>Problem-3:</b> Construction of a DFA for the set of string over {a, b} such that length of the string |w| is divisible by 3 i.e, |w| mod 3 = 0.<br><br>
+
+<b>Explanation –</b> The desired language will be like:<br><br>
+
+<div class="box">L = {?, aaa, aab, aba, abb, aaaaaa, bbbbbb, .......} </div><br><br>
+
+<p>The state transition diagram of the language will be like:</p><br>
+</p>
+<img src="pictures/TOC5 14.png" alt="" width="50%"><br>
+
+<p>
+    Here, state A represents set for which string’s length divided by 3 then remainder is zero (0),<br>
+     state B represents set for which string’s length divided by 3 then the remainder is one (1), <br>
+     and state C represents set for which string’s length divided by 3 then the remainder is two (2).<br><br>
+
+    <div class="box"> Number of states: n<br>
+If |W| mod n = 0 </div><br>
+
+</p>
+
+<div class="p1">
+    <div class="box">
+        
+def stateA(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    print("Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else:  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+    #on any input call function stateB<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateB(n[1:])<br>
+      
+def stateB(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    print("Not Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+     #on any input call function stateC<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateC(n[1:])  <br>
+          
+def stateC(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    print("Not Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+     #on any input call function stateA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        stateA(n[1:])         <br>     
+
+
+
+#take input<br>
+n=input()<br>
+
+#call stateA<br>
+#to check the input<br>
+stateA(n)<br>
+</div>
+</div>
+    <p>
+        The above automata will accept all the strings having the length of the string divisible by 3. When the length of the string is 1, <br>
+        then it will go from state A to B. When the length of the string is 2, then it will go from state B to C and When the length of the string is 3, <br>
+        then it will go from state C to A (final state). State A is the final state i.e, it accepts all the string having the length divisible by 3.<br>
+
+<b>Problem-4: </b>Construction of a DFA for the set of string over {a, b} such that length of the string |w| is not divisible by 3 i.e, |w| mod 3 = 1.<br>
+
+<b>Explanation –</b> The desired language will be like:<br><br>
+
+<div class="box">L = {a, b, aa, ab, ba, bb, aaaa, bbbb, ........} </div><br><br>
+<p>The state transition diagram of the language will be like:</p><br>
+    </p>
+    <img src="pictures/TOC5 15.png" alt="" width="50%"><br>
+        <p>
+            Here, state A represents set for which string’s length divided by 3 then remainder is zero (0),<br>
+             state B represents set for which string’s length divided by 3 then the remainder is one (1),<br>
+              and state C represents set for which string’s length divided by 3 then the remainder is two (2).<br>
+
+        </p>
+        <div class="p1">
+            <div class="box">
+                def stateA(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("Not Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+        #on any input call function stateB<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            stateB(n[1:])<br>
+          
+def stateB(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+         #on any input call function stateC<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            stateC(n[1:])  <br>
+              
+def stateC(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    if(len(n)==0):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        print("Not Accepted")<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    else:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+         #on any input call function stateA<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        if (n[0]=='0' or n[0]=='1'):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            stateA(n[1:])         <br>     
+  
+  
+  
+#take input<br>
+n=input()<br>
+  
+#call stateA<br>
+#to check the input<br>
+stateA(n)<br>
+</div>
+</div>
+        <p>
+            The above automata will accept all the strings having the length of the string not divisible by 3.<br> 
+            When the length of the string is 1, then it will go from state A to B. When the length of the string is 2, <br>
+            then it will go from state B to C and When the length of the string is 3, then it will go from state C to A.<br>
+             State B and C are the final state i.e, it accepts all the string having the length not divisible by 3.<br>
+
+
+
+        </p>
+</body>
+</html>

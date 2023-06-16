@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    li{
+        font-size: 20px;
+        font-style: oblique;
+    }
+    ul{
+        font-size: 20px;
+        font-style: oblique;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+</style>
+<body>
+    <h1>Designing Finite Automata from Regular Expression (Set 1)</h1>
+    <p>In this article, we will see some popular regular expressions and how we can convert them to finite automata.</p><br>
+    <ul>
+        <li><b>Even number of a’s</b> : The regular expression for even number of a’s is <b>(b|ab*ab*)*</b>. We can construct a finite automata as shown in Figure 1.</li><br>
+        <img src="pictures/automata1.jpg" alt=""><br>
+        <p>All strings with an even number of a's will be accepted by the above automata. For zero a's, it will be in the final state, q0. It will travel from q0 to q1 for one 'a' and the string will be rejected. It will go from q0 to q1 for the first 'a' and q1 to q0 for the second 'a' for two a's at any place. As a result, it will accept any string with an even number of a's.</p>
+        <li><b>String with ‘ab’ as substring </b>: The regular expression for strings with ‘ab’ as substring is <b>(a|b)*ab(a|b)*</b>. We can construct finite automata as shown in Figure 2.</li><br>
+        <img src="pictures/automatafigure2.jpg" alt="">
+        The above automaton will accept any string with the substring 'ab'. For b's, the automata will remain in the initial state q0. It will go to q1 after reading 'a' and remain there for the rest of the 'a'. If 'b' is read, it will proceed to q2. If the string reaches q2, it has read 'ab' as a substring.<br>
+        <p>NOTE: If we want to create a finite automata with 3n+1 a's, we can utilize the same automata with q1 as the end state instead of q0.
+            k states are necessary to create a finite automaton with language akn | n >= 0. In our example, k = 3 was chosen.</p>
+
+
+        <li><b>Binary numbers divisible by 3 : </b>
+             The regular expression for binary numbers which are divisible by three is (0|1(01*0)*1)*. 
+            The examples of binary number divisible by 3 are 0, 011, 110, 1001, 1100, 1111, 10010 etc. 
+            The DFA corresponding to binary number divisible by 3 can be shown in Figure 4.</li><br>
+            <img src="pictures/automatafigure4.jpg" alt="">
+
+      <p>All binary numbers divisible by three will be accepted by the above automata. 
+
+                For 1001, the automata will go from q0 to q1, then from q1 to q2, then from q2 to q1, and lastly from q2 to q0, 
+                and thus accepted. For 0111, the automata will travel from q0 to q0, then q0 to q1, then q1 to q0, and ultimately q0 to q1.</p>
+        <li><b>String with regular expression (111 + 11111)* :</b> 
+            The string accepted by this regular expression will have 3, 5, 6 (111 twice), 8 (111111 once and 111 once), 9 (111 thrice),
+             10 (111111 twice), and all subsequent counts of 1. Figure 5 depicts the DFA for the supplied regular expression.</li><br>
+             <img src="pictures/Automatafigure5.jpg" alt="">
+             <p>Question : What will be the minimum number of states for strings with odd number of a’s?</p>
+           <p><b>Solution:</b>  The regular expression for odd number of a is b*ab*(ab*ab*)* and corresponding automata 
+            is given in Figure 6 and minimum number of states are 2.</p>
+            <img src="pictures/automatafigure6.jpg" alt="">
+    </ul>
+</body>
+</html>

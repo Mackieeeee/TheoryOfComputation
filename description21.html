@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+    .box1{
+       background: #afb1e3;
+       width: 50%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+
+    
+.box{
+       background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+h1{
+        text-align:justify;
+        color:#03074a
+    }
+h2{
+        text-align:justify;
+        color:#03074a;
+    }
+img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h3{
+        text-align:justify;
+        color:#03074a;
+    }
+
+</style>
+<body>
+    <h1>Concatenation process in DFA</h1><br>
+    <p>Prerequisite – <a href="description8.html" target="description">Designing finite automata</a> <br>
+        Designing a DFA for the set of string over {a, b} such that string of the language start with “a” and end with “b”. There two desired language will be formed:<br><br></p>
+
+        <div class="box">L1 = {a, aab, aabab, .......}<br>
+            L2 = {b, bbab, bbabab, .......}</div> <br><br>
+            <p>In L1, starting element is “a” and in L2, ending element is b. <br>
+
+            State Transition Diagram for the language L1: <br>
+        </p>
+
+        <img src="pictures/TOC10.png" alt="" width="50%">
+
+        <p>This DFA accepts all the string which starts with “a”. Here, state C is the final state and <br>
+            B is the dead state this is called so because after getting any alphabet this state will never go to final state. <br><br>
+            State Transition Diagram for the language L2: <br>
+
+
+        </p>
+        <img src="pictures/TOC11.png" alt="" width="50%">
+
+        <p>
+            his DFA accepts all the string ending with alphabet “b”. Here, State B is called final state. <br>
+
+Now, Taking the concatenation of L1 and L2 language which gives the final result of the language which starts with “a” and end with “b”. <br>
+
+State Transition Diagram of L1.L2 i.e, L1 concat L2:  <br>
+        </p>
+        <img src="pictures/TOC12.png" alt="" width="50%">
+        <p>This DFA accept all the string which start with a and end with b. Here, <br>
+            State C is the final state and D is the dead state this is called so because after getting any input alphabet it will never go to final state.<br>
+
+        </p>
+
+</body>
+</html>

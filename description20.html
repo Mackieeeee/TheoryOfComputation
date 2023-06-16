@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+    .box1{
+       background: #afb1e3;
+       width: 50%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+
+    
+.box{
+       background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+h1{
+        text-align:justify;
+        color:#03074a
+    }
+h2{
+        text-align:justify;
+        color:#03074a;
+    }
+img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h3{
+        text-align:justify;
+        color:#03074a;
+    }
+    ol{
+    font-size: 18px;
+    font-style: oblique;
+}
+
+</style>
+<body>
+<h1>Union process in DFA</h1>
+<p>To perform the union operation on two deterministic finite automata (DFAs), the following steps can be taken:</p><br>
+<ol>
+    <li>Create a new DFA with a new set of states, consisting of all the states from both original DFAs.</li>
+    <li>Define the initial state of the new DFA to be the tuple (q1, q2), where q1 and q2 are the initial states of the original DFAs.</li>
+    <li>For each state in the new DFA, define the transition function by taking the union of the transition functions of the original DFAs. For example, if the transition function for the first DFA is δ1(q1, a) = q2, and the transition function for the second DFA is δ2(q3, a) = q4, then the transition function for the new DFA is δ( (q1,q3), a ) = (q2,q4). </li>
+    <li>Define the set of final states of the new DFA to be the union of the sets of final states of the original DFAs.</li>
+    <li>The resulting DFA will recognize the language that is the union of the languages recognized by the original DFAs.</li>
+</ol>
+<p>Let’s understand the Union process in Deterministic Finite Automata (DFA) with the help of the below example. Designing a DFA for the set of string over {a, b} such that the string of the language start and end with different symbols. These two desired languages will be formed:<br><br>
+
+    <div class="box">L1 = {ab, aab, aabab, .......}<br>
+    L2 = {ba, bba, bbaba, .......} </div><br><br>
+    L1= {starts with a and ends with b } and L2= {starts with b and ends with a}. Then <br>L= L1 ∪ L2 or L=L1 + L2 </p><br>
+    <p>State Transition Diagram for the language L1: </p>
+    <img src="pictures/TOC7.png" alt="">
+    <p>This DFA accepts all the string starting with a and ending with b. Here, State A is initial state and state C is final state.<br><br>State Transition Diagram for the language L2:  </p>
+    <img src="pictures/TOC7.png" alt="">
+    <p>This DFA accepts all the strings starting with b and ending with a. Here, State A is the initial state and state C is the final state. Now, Taking the union of L1 and L2 language gives the final result of the language which starts and ends with different elements. <br><br>
+
+        State Transition Diagram of L1 ∪ L2: </p>
+        <img src="pictures/TOC9.png" alt="">
+     <p>Thus as we see that L1 and L2 have been combined through the union process and this final DFA accept all the language containing strings starting and ending with different symbols. </p>  <br>
+     <p><b>Note:</b> From the above example, we can also infer that regular languages are closed under union(i.e Union of two regular languages is also regular).</p><br>
+     <h3>Advantages:</h3><br>
+     <p><b>Language Combination:</b>The union operation enables you to merge languages accepted by two different DFAs into a single DFA. This is useful when attempting to recognize strings from any language. By combining existing DFAs, you can handle increasingly complex language constraints.<br>
+    <b>Simple Construction: </b>DFA unionization is a pretty simple process. It entails building a new DFA that integrates the original DFAs' states and transitions. The new DFA recognizes the union of the languages without altering the original DFAs, making language combination straightforward and efficient.<br>
+<b>Deterministic Nature:</b>DFAs are deterministic in nature, including the consequent union DFA. This means that there is a distinct next state for each state and input symbol. The determinism of the automaton enables for straightforward analysis and prediction of its behavior.<br>
+<b>Efficient Execution: </b>DFAs, particularly the union DFA, can be efficiently implemented and executed. A DFA's transition function can be described as a table or as a set of state-transition diagrams, allowing for rapid and constant-time transitions. When analyzing input strings to identify membership in the combined language, execution efficiency is advantageous.</p><br>
+<h3>Disadvantages:</h3><br>
+<p><b>Increased Complexity:</b>When combining DFAs with a large number of states and transitions, the union procedure can create additional complexity. The resulting union DFA may contain a greater number of states and transitions, making it more difficult to manage, analyze, and grasp.<br>
+<b>State Explosion: </b>Combining two DFAs with a large number of states and transitions may result in a “state explosion” problem. The number of states in the resulting union DFA can grow exponentially, making it more difficult to construct and execute. Managing and representing large union DFAs can become computationally expensive and impractical.<br>
+<b>Lack of Optimization:</b>The union method does not optimize the resulting DFA naturally. The resulting union DFA may have redundant or superfluous states and transitions, which can reduce execution efficiency. To reduce the size and complexity of the union DFA, additional optimization approaches may be required.<br>
+<b>Limited to Regular Languages:</b>In DFAs, the union procedure is confined to regular languages. While the resulting union DFA can handle normal language unions, it cannot handle more sophisticated languages that require context or memory in addition to regular languages. More powerful models, such as pushdown automata or Turing machines, are required for such languages.</p><br>
+
+</body>
+</html>

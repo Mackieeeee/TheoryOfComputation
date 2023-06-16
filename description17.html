@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+    .box1{
+       background: #afb1e3;
+       width: 50%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+
+    
+.box{
+       background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+h1{
+        text-align:justify;
+        color:#03074a
+    }
+h2{
+        text-align:justify;
+        color:#03074a;
+    }
+img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h3{
+        text-align:justify;
+        color:#03074a;
+    }
+    ul{
+    font-size: 20px;
+    font-style: oblique;
+}
+ol{
+    font-size: 20px;
+    font-style: oblique;
+}
+
+</style>
+<body>
+    <h1>DFA machines accepting odd number of 0’s or/and even number of 1’s</h1><br>
+    <p>Prerequisite – Designing finite automata<br>
+Problem – Construct a DFA machine over input alphabet \sum_= {0, 1}, that accepts:<br><br>
+<ol>
+    <li>Odd number of 0’s or even number of 1’s</li>
+    <li>Odd number of 0’s and even number of 1’s</li>
+    <li>Either odd number of 0’s or even number of 1’s but not the both together</li>
+</ol>
+Solution – Let first design two separate machines for the two conditions:<br><br>
+</p>
+<ul>
+    <li>Accepting only odd number of 0’s</li>
+    <li>Accepting only even number of 1’s   </li>
+    
+</ul>
+<p>Then, merge these two and find the required final states.</p><br>
+<img src="pictures/fig1-5.png" alt="" width="50%"><br>
+<img src="pictures/fig2-5.png" alt="" width="50%"><br><br>
+<p>To merge these two machines, we will take the Cartesian product of the states of these two machines:</p><br>
+<img src="pictures/FIGure3 (1).png" alt="" width="50%"><br><br>
+<p>Initial state of these DFA will be the state which contains the initial states of those two separate machines. As, q0 and q2 are the initial states thus, q0q2 is the initial state of the final DFA.</p><br><br>
+<p>Now start designing all the DFAs one by one:</p><br>
+<ol>
+    <li>Odd number of 0’s or even number of 1’s:
+        This machine accept that languages which contains either odd no. of 0’s or even no. of 1’s. As we know that q1 indicates odd no. of 0’s and q2 indicates even no. of 1’s. So, the final states of the required DFA will contain either q1 or q2.
+        .’. Final states = {(q0q2), (q1q2), (q1q3)}</li><br>
+        <img src="pictures/FIGure3 (1).png" alt="" width="50%"><br><br>
+        <p>This is our required DFA which accept the languages containing odd no. and 0’s or even no. of 1’s.</p><br>
+    <li>Odd number of 0’s and even number of 1’s:
+        This machine accept that languages which contains odd no. of 0’s and even no. of 1’s. As we know that q1 indicates odd no. of 0’s and q2 indicates even no. of 1’s. So, the final states of the required DFA will contain both q1 and q2.
+        .’. Final state = {(q1q2)}</li><br>
+        <img src="pictures/FIGure3 (1).png" alt="" width="50%"><br>
+        <p>This is our required DFA which accept the languages containing odd no. and 0’s or even no. of 1’s.</p>     
+        <li>Either odd number of 0’s or even number of 1’s but not the both together:
+            This machine accept that languages which contains either odd no. of 0’s or even no. of 1’s but not that languages which contains both odd no. of 0’s and even no. of 1’s. As we know that q1 indicates odd no. of 0’s and q2 indicates even no. of 1’s. So, the final states of the required DFA will contain exactly one among q1 and q2.
+            .’. Final states = {(q0q2), (q1q3)}</li>
+            <img src="pictures/FIGure3 (1).png" alt="" width="50%"><br>
+   </ol>   
+   <p>This is our required DFA which accept the languages containing odd no. of 0’s or even no. of 1’s but not the both together.</p>
+</body>
+</html>

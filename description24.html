@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #e8e9ff;
+
+    }
+
+    .box1 {
+        background: #afb1e3;
+        width: 50%;
+        margin-left: 30px;
+        border-radius: 10px;
+
+    }
+
+
+    .box {
+        background: #afb1e3;
+        width: 90%;
+        margin-left: 30px;
+        border-radius: 10px;
+        font-size: 18px;
+       font-style: monospace;
+
+    }
+    .box1 {
+        background: #afb1e3;
+        width: 90%;
+        margin-left: 30px;
+        border-radius: 10px;
+        font-size: 18px;
+       font-style: monospace;
+       height: 50px;
+
+
+    }
+
+    p {
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+
+    h1 {
+        text-align: justify;
+        color: #03074a
+    }
+
+    h2 {
+        text-align: justify;
+        color: #03074a;
+    }
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h3 {
+        text-align: justify;
+        color: #03074a;
+        text-align: center;
+    }
+
+    ol {
+        font-size: 20px;
+        font-style: oblique;
+    }
+
+    table,th,td {
+        font-size: 20px;
+        font-style: oblique;
+        text-align: center;
+        border: 2px solid #000;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <h1>Difference between Mealy machine and Moore machine</h1><br>
+    <p>Mealy Machine is defined as a machine in the theory of computation whose output values are determined by both its
+        current state and current inputs. In this machine at most one transition is possible. <br>
+        It has 6 tuples: (Q, q0, ∑, ▲, δ, λ’) </p>
+    <ol>
+        <li>Q is a finite set of states </li>
+        <li>q0 is the initial state </li>
+        <li>∑ is the input alphabet </li>
+        <li>▲ is the output alphabet </li>
+        <li>δ is the transition function that maps Q×∑ → Q </li>
+        <li>‘λ’ is the output function that maps Q×∑→ ▲ </li>
+    </ol><br>
+    <div class="box1">Prerequisite – <a href="description23.html" target="description">Mealy and Moore Machines</a> </div>   <br>
+    <p>The diagram is as follows:</p><br>
+    <img src="pictures/11.png"><br>
+    <h2>Moore Machine:</h2><br>
+    <p>Moore's machine is a machine in computation theory whose output values are decided solely by its current state.
+        It similarly has 6 tuples.</p><br>
+    <p>(Q, <div class="box">q0, ∑, ▲, δ, λ) </div></p><br>
+    <ol>
+        <li>Q is a finite set of states </li>
+        <li>q0 is the initial state </li>
+        <li>∑ is the input alphabet </li>
+        <li>▲ is the output alphabet </li>
+        <li>δ is the transition function that maps Q×∑ → Q </li>
+        <li>λ is the output function that maps Q → ▲</li>
+    </ol><br>
+    <h3>Diagram:</h3><br>
+    <img src="pictures/22-9.png"><br>
+    <p>The difference between the Mealy machine and Moore machine is as follows:</p><br>
+    <table>
+        <tr>
+            <th>Moore Machine</th>
+            <th>Mealy Machine</th>
+        </tr>
+        <tr>
+            <td>Output depends only upon the present state.</td>
+            <td>Output depends on the present state as well as present input. </td>
+        </tr>
+        <tr>
+            <td>Moore machine also places its output on the transition.</td>
+            <td>Mealy Machine places its output on the transition.</td>
+        </tr>
+        <tr>
+            <td>More states are required. </td>
+            <td>Less number of states are required. </td>
+        </tr>
+        <tr>
+            <td>There is less hardware requirement for circuit implementation. </td>
+            <td>There is more hardware requirement for circuit implementation. </td>
+        </tr>
+        <tr>
+            <td>They react slower to inputs(One clock cycle later). </td>
+            <td>They react faster to inputs.</td>
+        </tr>
+        <tr>
+            <td>Synchronous output and state generation. </td>
+            <td>Asynchronous output generation. </td>
+        </tr>
+        <tr>
+            <td>Output is placed on states. </td>
+            <td>Output is placed on transitions. </td>
+        </tr>
+        <tr>
+            <td>Easy to design.</td>
+            <td>It is difficult to design. </td>
+        </tr>
+        <tr>
+            <td>If input changes, output does not change</td>
+            <td>If input changes, output also changes.</td>
+        </tr>
+        <tr>
+            <td>Has fewer or the same states as that of the Mealy machine.</td>
+            <td>Has fewer or the same states as that of the Moore machine.</td>
+        </tr>
+    </table>
+
+
+</body>
+
+</html>

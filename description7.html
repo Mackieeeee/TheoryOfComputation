@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    ul{
+        font-size: 20px;
+        font-style: oblique;
+    }
+    ol{
+        font-size: 20px;
+        font-style: oblique;
+    }
+
+
+</style>
+<body>
+    <h1>How to identify if a language is regular or not</h1><br>
+    <p>Prerequisite – Regular Expressions, Regular Grammar and Regular Languages, Pumping Lemma <br>
+        Pumping Lemma is a well-known theorem that uses the Pigeon Hole Principle to determine if a language is regular or not. However, pumping lemma is a negative test; if a language does not meet it, we can be certain that it is not regular; if it does, the language may or may not be regular. Pumping Lemma is a mathematical proof that takes more time and can be perplexing at times. In exams, we must solve this issue quickly, thus here are some quick principles to follow based on common observations and analysis:  </p><br><br>
+        <ol>
+            <li>Every finite set represents a regular language. <br>
+                <b>Example 1</b> – All strings of length = 2 over {a, b}* i.e. L = {aa, ab, ba, bb} is regular. </li><br>
+            <li>Given a non-regular language expression, but the value of the parameter is limited by some constant, the language is regular (it has some form of finite comparison).<br>
+                <b>Example 2</b> – L = {a^n     [Tex]b^n     [/Tex]| n <= 101010} is regular, because it is upper bounded and thus a finite language. </li><br>
+            <li>The string pattern that forms an A.P. (Arithmetic Progression) is regular (i.e. its power is in the form of a linear expression). <br>
+                However, the pattern with G.P. (Geometric Progression) is not regular (i.e. its power is in the form of a non-linear expression) and falls into the category of Context Sensitive Language.<br>
+                <b>Example 3</b> – L = {  | n>=2 } is regular. Clearly, it forms an A.P., so we can draw a finite automaton with 3 states. <br>
+                <b>Example 4</b>> – L = { a2^n | n>=1 } is not regular. It forms a G.P., so we cannot have a fixed pattern which repeated would generate all strings of this language. <br>
+                In example 4 if ‘n’ is bounded like n<10000 then it becomes regular as it is finite. <br>
+                </li><br>
+            <li>There is no pattern that could be repeated to generate all the strings in the language. Finding prime is not conceivable using FA.<br>
+                <b>Example 5</b> – L = {a^p| p is prime. } is not regular.<br> 
+                </li><br>
+            <li>A regular language is also a concatenation of a pattern (regular) and a non-pattern (not regular).<br>
+                <b>Example 6</b> – L1 = {  | n≥1 }, L2 = { n≥1 } then L1.L2 is not regular.<br>
+                </li><br>
+            <li>The language is not regular whenever unbounded storage is necessary for storing the count and then comparing it to other unbounded counts.<br>
+                <b>Example 7</b> – L = {  [Tex]b^n     [/Tex]| n>=1 } is not regular, because we need to first store the count of a and then compare it against count of b, but finite automaton has a limited storage, but in L, there can be infinite number of a’s coming in, which can’t be stored. <br>
+                <b>Example 8</b> – L = { w | na(w) = nb(w) } is not regular. <br>
+                <b>Example 9</b> – L = { w | na(w)%3 > nb(w)%3 } is regular, because modulus operation requires bounded storage i.e. modulus can be only 0, 1 or 2 for %3 operation and then similarly for b, it would be 0, 1 and 2. So, the states represented in DFA would be all combinations of the remainders of a and b.<br>
+                </li><br>
+                <li>Patterns of <b>W, W r</b>> and <b>x , y </b>
+                </li><br>
+                <ul>
+                    <li>If |x| is limited to a given length, then it is not regular. 
+                        <b>Example 10</b> - L = {W x W<sup>r</sup> | W, x belongs to{a, b}*, and |x|=5} is not a regular expression. If W = abb, then Wr = bba and x = aab, resulting in the concatenated string abb, aab, bba. x can now be enlarged to consume W and W<sup>r</sup>, but |x| = 5. As a result, even in an enlarged string, W=ab, Wr=ba, and x=baabb. So there is no pattern of form (a+b)*, so it is not regular.
+                        </li><br>
+                        <li>If |x| is unbounded and W belongs to (a+b)*, then use W as epsilon and Wr as epsilon; if the result is (a+b)*, the language is regular. 
+                            L = W x W<sup>r</sup> | W, x belongs to a, b* is regular in <b>Example 11</b>. 
+                            If W = abb, then W<sup>r</sup> = bba and X = aab, resulting in the concatenated string abb, aab, bba. (x) can now be expanded to consume W and W<sup>r</sup>. W=&epsilon;, W<sup>r</sup>=&epsilon;, and X=abb, aab, bba in the expanded string. We get a simple pattern of the kind (a+b)* for which we can design a finite automaton.
+                            </li><br>
+                        <li>If |x| is unbounded and W belongs to (a+b)+, then replace W with any symbol from the alphabet and corresponding W<sup>r</sup>, and if we can still get some combination of (a+b)* as a consequence, with a guarantee that all strings will be of the same form, the language is regular; otherwise, it is not. This requires further explanation with an example:<br>
+                            L = {W x W<sup>r</sup> | W, x belongs to {a, b}+} is regular in <b>Example 12</b>. 
+                            If W = abb, then W<sup>r</sup> = bba and x = aab, resulting in the combined string abbaabbba. X can now be stretched to consume W and W<sup>r</sup>, leaving only one sign, either an or b. If W=a, then W<sup>r</sup> =a, and if W=b, then W<sup>r</sup>=b in the enlarged string. Wr=a in the preceding example. x=bbaabbb. It is reduced to pattern strings beginning and ending with the same symbol a(a+b)*a or b(a+b)*b for which a finite automaton can be drawn.
+                             </li><br>
+                             <li>Example 13 – {L = W W<sup>r</sup> Y | W, y belongs to {0, 1}+} is not a regular expression. 
+                                If W = 101, W<sup>r</sup>> = 101, and Y = 0111, the string is 1011010111. When y is expanded, W=1, W<sup>r</sup>=0, and y=11010111. According to this expansion, the string does not belong to the language, which is incorrect and thus not regular.<br>
+                                If W=110, W<sup>r</sup>=011, and Y=0111, then the string is 1100110111. When y is enlarged, W=1, W<sup>r</sup>=1, and Y=00110111. This string meets the language, but we can't generalize from it because strings can also begin with 01 and 10.
+                                </li>
+                                <li>Example 14 –{ L = x WW<sup>r</sup> y | x, y, W belong to {a, b}+} and are regular. 
+                                    If X is aaaba, W is ab, then Y is ab. aaaba abbaab is the string. Now, x and y can be enlarged so that W and W<sup>r</sup> are eaten while leaving one symbol for +, resulting in the new values X= aaabaa W= b, W<wr></wr> = b. As a result, the language is reduced to a collection of all strings that contain 'bb' or 'aa' as substrings, which is regular.
+                                    </li>
+                </ul>
+        </ol>
+        <h2>Advantages of identifying language regularity:</h2>
+        <p><b>Understanding language properties:</b> Understanding a language's features and restrictions is aided by determining whether it is regular. Regular languages feature well-defined qualities that can be beneficial in studying and manipulating the language, such as closure under union, concatenation, and Kleene star.</p><br>
+        <p><b>Algorithmic solutions:</b> There are efficient algorithms and tools for recognizing and processing regular languages. After identifying a language as regular, you can use these algorithms and techniques to solve language-related problems such as creating finite automata, constructing regular expressions, and optimizing regular expressions.</p><br>
+        <p><b>Practical applications:</b> Regular languages are used in many practical applications, including text processing, pattern matching, lexical analysis, and network protocols. By determining a language's regularity, you can use existing tools and libraries created expressly for regular languages, easing the creation and efficiency of these applications.</p><br>
+        <h2>Disadvantages of identifying language regularity:</h2>
+        <p><b>Undecidability of general languages:</b> For general languages, determining a language's regularity is impossible. It indicates that no algorithm exists that can determine the regularity of any arbitrary language. While strategies and algorithms are available for certain circumstances, there are always languages whose regularity cannot be determined.</p><br>
+        <p><b>Complex languages:</b> Beyond regular languages, determining the regularity of languages (e.g., context-free, context-sensitive, or recursively enumerable languages) necessitates increasingly powerful approaches and formalisms. In these circumstances, regularity identification techniques are inapplicable, and other approaches, such as context-free grammars or Turing machines, must be used.</p><br>
+        <p><b>Time and space complexity:</b> The difficulty of finding language regularity varies depending on the approach utilized and the language under consideration. The method can be computationally expensive for complicated languages, involving exponential time or space complexity. This constraint can make determining the regularity of certain languages difficult.</p><br>
+        <p><b>False negatives or false positives:</b> Language regularity detection algorithms may yield false negatives or false positives. When a regular language is wrongly identified as non-regular, a false negative happens, and when a non-regular language is mistakenly identified as regular, a false positive occurs. To reduce the possibility of incorrect classifications, it is critical to select acceptable procedures and validate the results.</p><br>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 5px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+</style>
+
+<body>
+<h1>Introduction of Finite Automata</h1>
+<p>Finite Automata(FA) is the simplest machine to recognize patterns. The finite <br> automata or finite state machine is an abstract machine that has five elements or <br> tuples. It has a set of states and rules for moving from one state to another but it <br> depends upon the applied input symbol. Basically, it is an abstract model of a digital <br> computer. The following figure shows some essential features of general <br> automation.</p><br>
+<img src="pictures/automata1.png" alt="">
+<p>The above figure shows the following features of automata: <br>
+
+    1.Input <br>
+    2.Output <br>
+    3.States of automata <br>
+    4.State relation <br>
+    5.Output relation <br><br>
+    A Finite Automata consists of the following: <br><br>
+    <div class="box">
+    Q : Finite set of states. <br>
+    Σ : set of Input Symbols. <br>
+    q : Initial state. <br>
+    F : set of Final States. <br>
+    δ : Transition Function.</p> <br></div>
+    <p>Formal specification of machine is </p>
+    <div class="box">
+    <p>{ Q, Σ, q, F, δ }</p>
+    </div>
+
+    <p>FA is characterized into two types: </p>
+    <h2>1) Deterministic Finite Automata (DFA):</h2>
+    <p>
+<div class="box">DFA consists of 5 tuples {Q, Σ, q, F, δ}. 
+Q : set of all states.<br><br>
+Σ : set of input symbols. ( Symbols which machine takes as input )<br><br>
+q : Initial state. ( Starting state of a machine )<br><br>
+F : set of final state.<br><br>
+δ : Transition Function, defined as δ : Q X Σ --> Q.</div><br><br>
+
+    </p>
+<p>
+    In a DFA, for a particular input character, the machine goes to one state only.<br>     
+     A transition function is defined on every state for every input symbol<br>
+     Also in DFA null (or ε) move is not allowed, i.e., DFA cannot change state without any input character. <br>
+     For example, below DFA with Σ = {0, 1} accepts all strings ending with 0. <br>
+</p>
+<img src="pictures/wfghh.jpg" alt="">
+<p>
+    One important thing to note is, in NFA, if any path for an input string leads to a final state,<br>
+    For example, in the above NFA, there are multiple paths for the input string “00”. <br>
+    Since one of the paths leads to a final state, “00” is accepted by the above NFA. <br>
+
+</p>
+<h3>Some Important Points:</h3>
+<h2>Justification:</h2>
+<p>Since all the tuples in DFA and NFA are the same except for one of the tuples, which is Transition Function (δ) <br>
+    In case of DFA<br>
+    δ : Q X Σ --> Q<br>
+    In case of NFA<br>
+    δ : Q X Σ --> 2Q<br>
+    Now if you observe you’ll find out Q X Σ –> Q is part of Q X Σ –> 2Q.<br><br>
+
+    On the RHS, Q is a subset of 2Q, implying that Q is included in 2Q or is a component of 2Q,<br>
+    while the opposite is not true. So, mathematically, we can deduce that every DFA is an NFA but not the other way around. <br>
+    However, because an NFA may be converted to a DFA, every NFA has a corresponding DFA.<br>
+
+</p>
+<p>1. Both NFA and DFA have the same power and each NFA can be translated into a DFA. <br>
+    2.There can be multiple final states in both DFA and NFA. <br>
+    3.NFA is more of a theoretical concept. <br>
+    4.DFA is used in Lexical Analysis in Compiler. <br>
+    5.If the number of states in the NFA is N then, its DFA can have maximum 2N number of states.<br><br>
+</p>
+</section>
+</body>
+</html>

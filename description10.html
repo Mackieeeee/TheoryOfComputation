@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    ul{
+        font-size: 20px;
+        font-style: oblique;
+    }
+
+</style>
+
+<body>
+    <h1>Conversion from NFA to DFA</h1><br>
+    <p>An NFA can have zero, one or more than one move from a given state on a given input symbol. An NFA can also have NULL moves (moves without input symbol). On the other hand, DFA has one and only one move from a given state on a given input symbol. </p><br>
+    <h2>Steps for converting NFA to DFA:</h2><br>
+    <p><b>Step 1: Convert the given NFA to its equivalent transition table</b><br>To convert the NFA to its corresponding transition table, we must first list all of the states, input symbols, and transition rules. The transition rules are expressed as a matrix with rows representing the current state, columns representing the input symbol, and cells representing the next state. </p><br>
+    <p><b>Step 2: Create the DFA’s start state</b>The collection of all potential starting states in the NFA is the DFA's start state. The "epsilon closure" of the NFA's start state is referred to as this set. The set of all states that may be reached from the start state by following epsilon () transitions is known as the epsilon closure.</p><br>
+    <p><b>Step 3: Create the DFA’s transition table</b>The DFA's transition table is similar to the NFA's transition table, except that the rows and columns reflect groups of states rather than individual states. The epsilon closure of the set of states obtained by executing the transition rules in the NFA's transition table is stored in the relevant cell in the transition table for each input symbol.</p><br>
+    <p><b>Step 4: Create the DFA’s final states</b>The final states of the DFA are the groups of states that contain at least one final state from the NFA.</p><br>
+    <p><b>Step 5: Simplify the DFA</b>The DFA generated in the preceding steps may have redundant states and transitions. We can use the following strategies to simplify the DFA:</p><br>
+    <ul>
+        <li>Remove unreachable states: States that are inaccessible from the starting point can be eliminated from the DFA. </li><br>
+        <li>Remove dead states: States that are incapable of leading to a final state may be deleted from the DFA.</li><br>
+        <li>Merge equivalent states: States with the same transition rules for all input symbols can be combined into one.</li><br>
+    </ul>
+    <p><b>Step 6: Repeat steps 3-5 until no further simplification is possible</b><br>We repeat steps 3-5 until no further simplification of the DFA is achievable. The obtained final DFA is the reduced DFA equivalent to the specified NFA.<br>
+    <b>Example:</b> Consider the following NFA shown in Figure 1.</p>
+    <img src="pictures/Figure1.png" alt=""><br>
+    <p>Following are the various parameters for NFA. Q = { q0, q1, q2 } ∑ = ( a, b ) F = { q2 } δ (Transition Function of NFA) </p><br>
+    <img src="pictures/table1.png" alt=""><br>
+    <p><b>Step 1:</b> Q’ = ɸ Step 2: Q’ = {q0} Step 3: For each state in Q’, find the states for each input symbol. Currently, state in Q’ is q0, find moves from q0 on input symbol a and b using transition function of NFA and update the transition table of DFA. δ’ (Transition Function of DFA)</p><br>
+    <img src="pictures/table2.png" alt=""><br>
+    <p>Now { q0, q1 } will be considered as a single state. As its entry is not in Q’, add it to Q’. So Q’ = { q0, { q0, q1 } } Now, moves from state { q0, q1 } on different input symbols are not present in transition table of DFA, we will calculate it like: δ’ ( { q0, q1 }, a ) = δ ( q0, a ) ∪ δ ( q1, a ) = { q0, q1 } δ’ ( { q0, q1 }, b ) = δ ( q0, b ) ∪ δ ( q1, b ) = { q0, q2 } Now we will update the transition table of DFA. δ’ (Transition Function of DFA) </p><br>
+    <img src="pictures/table3.png" alt=""><br>
+    <p>Now { q0, q2 } will be considered as a single state. As its entry is not in Q’, add it to Q’. So Q’ = { q0, { q0, q1 }, { q0, q2 } } Now, moves from state {q0, q2} on different input symbols are not present in transition table of DFA, we will calculate it like: δ’ ( { q0, q2 }, a ) = δ ( q0, a ) ∪ δ ( q2, a ) = { q0, q1 } δ’ ( { q0, q2 }, b ) = δ ( q0, b ) ∪ δ ( q2, b ) = { q0 } Now we will update the transition table of DFA. δ’ (Transition Function of DFA) </p><br>
+    <img src="pictures/table4.png" alt=""><br>
+    <p>As there is no new state generated, we are done with the conversion. Final state of DFA will be state which has q2 as its component i.e., { q0, q2 } Following are the various parameters for DFA. Q’ = { q0, { q0, q1 }, { q0, q2 } } ∑ = ( a, b ) F = { { q0, q2 } } and transition function δ’ as shown above. The final DFA for above NFA has been shown in Figure 2. </p><br>
+    <img src="pictures/Figure2.png" alt=""><br>
+    <p><b>Note :</b> Sometimes, it is not easy to convert regular expression to DFA. First you can convert regular expression to NFA and then NFA to DFA.<br>
+
+        <b>Question :</b> The number of states in the minimal deterministic finite automaton corresponding to the regular expression (0 + 1)* (10) is ____________. <br>
+        
+        <b>Solution :</b> First, we will make an NFA for the above expression. To make an NFA for (0 + 1)*, NFA will be in same state q0 on input symbol 0 or 1. Then for concatenation, we will add two moves (q0 to q1 for 1 and q1 to q2 for 0) as shown in Figure 3. <br>
+        
+        </p><br>
+        <img src="pictures/Figure3.png" alt=""><br>
+        <img src="pictures/table5.png" alt=""><br>
+        <img src="pictures/Figure4.png" alt=""><br>
+    </body>
+    </html>

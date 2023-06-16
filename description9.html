@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    li{
+        font-size: 20px;
+        font-style: oblique;
+    }
+    ul{
+        font-size: 20px;
+        font-style: oblique;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    table,th,td{
+        font-size: 20px;
+        font-style: oblique;
+        text-align: center;
+        border: 2px solid #000;
+        border-collapse: collapse;
+    }
+</style>
+<body>
+    <h1>Program to Implement NFA with epsilon move to DFA Conversion</h1>
+    <p><b>Non-deterministic Finite Automata (NFA) : </b>NFA is a finite automaton in which, w
+        hen a single input symbol is provided to a single state, the machine proceeds to more than one state, i.e. 
+        some of the moves cannot be uniquely defined by the current state and the current input symbol.<br><br>
+        <div class="box">An NFA can be represented as M = { Q, ∑, ∂, q0, F}</div><br><br>
+<div class="box">Q → Finite non-empty set of states. ∑ → Finite non-empty set of input symbols. ∂ → Transitional Function. q0 → Beginning state. F → Final State</div>
+    </p>
+    <p><b>NFA with (null) or ∈ move :</b>NFA is a finite automaton in which some moves cannot 
+        be uniquely determined by the current state and the current input symbol when a single input is supplied to a single state.
+    </p><br>
+    <p><b>Example :</b>Consider the following figure of NFA with ∈ move :</p>
+    <img src="pictures/epsilon1.png" alt=""><br>
+    <h3>Transition state table for the above NFA </h3>
+    <table>
+        <tr bgcolor="pink">
+            <th>STATES</th>
+            <th>0</th>
+            <th>1</th>
+            <th>epsilon</th>
+        </tr>
+        <tr bgcolor="pink">
+            <td>A</td>
+            <td>B</td>
+            <td>A</td>
+            <td>B</td>
+        </tr>
+        <tr bgcolor="pink">
+            <td></td>
+            <td>C</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr bgcolor="pink">
+            <td>B</td>
+            <td>-</td>
+            <td>B</td>
+            <td>C<td>
+        </tr>
+        <tr bgcolor="pink">
+            <td>C</td>
+            <td>C</td>
+            <td>C</td>
+            <td>-</td>
+        </tr>
+
+    </table>
+    <p><b>Epsilon (∈) – closure : </b>For a given state X, the epsilon closure is a set of states that can be reached from the state X with only (null) or movements, including the state X itself. In other words, -closure for a state can be achieved by performing a recursive union operation on the -closure of the states that can be reached from X with a single move.
+         The following are the closures for the preceding example:</p>
+         <div class="box">∈ closure(A) : {A, B, C}<br>
+            ∈ closure(B) : {B, C}<br>
+            ∈ closure(C) : {C}</div></p><br>
+    
+            <p><b> Deterministic Finite Automata (DFA) : </b>DFA is a finite automaton in which, in all circumstances,
+                 when a single input symbol is provided to a single state, the machine moves to that state, i.e., all of the machine's moves can be uniquely defined by
+                 the current state and the current input symbol.</p>    
+                <p><b>Steps to Convert NFA with ε-move to DFA :</b></p>
+                <div class="box">Step 1 :</b>Take ∈ closure for the beginning state of NFA as beginning state of DFA.<b>Step 2 :</b>Find the states that can be traversed from the present for each input symbol (union of transition value
+                     and their closures for each states of NFA present in current state of DFA). 
+                <b> Step 3 :</b> If any new state is found take it as current state and repeat step 2.
+                <b>Step 4 :</b> Do repeat Step 2 and Step 3 until no new state present in DFA transition table. 
+                <b>Step 5 :</b> Mark the states of DFA which contains final state of NFA as final states of DFA.</div><br>
+                <h3>Transition State Table for DFA corresponding to above NFA</h3>
+
+                <table>
+                    <tr bgcolor="pink">
+                     <th>STATES</th>
+                     <th>0</th>
+                     <th>1</th>
+                    </tr>
+                    <tr bgcolor="pink">
+                        <td>A, B, C</td>
+                        <td>B</td>
+                        <td>A, B,</td>
+                    </tr>
+                    <tr bgcolor="pink">
+                        <td></td>
+                        <td>C</td>
+                        <td>C</td>
+                    </tr>
+                    <tr bgcolor="pink">
+                        <td>B, C</td>
+                        <td>C</td>
+                        <td>B, C</td>
+                    </tr>
+                    <tr bgcolor="pink">
+                        
+                            <td>C</td>
+                            <td>C</td>
+                            <td>C</td>
+                    </tr>
+                </table>
+                <h3>DFA STATE DIAGRAM</h3><br>
+                <img src="pictures/epsilon2.png" alt="">
+                <h3>Examples :</h3></p>
+                <div class="box"><b>Input :</b><br>
+                    6<br>
+                    2<br>,
+                    FC - BF<br>
+                    - C -<br>
+                    - - D<br>
+                    E A -<br>
+                    A - BF<br>
+                    - - -</p>
+
+                    <b>Output :</b><br>
+                        STATES OF NFA :        A, B, C, D, E, F,<br><br>
+                       
+                        GIVEN SYMBOLS FOR NFA:     0, 1, eps<br><br>
+                       
+                       
+                        NFA STATE TRANSITION TABLE <br><br>
+                       
+                       
+                       STATES    |0    |1    eps<br><br>
+                       --------+------------------------------------<br><br>
+                       
+                       A    |FC     |-     |BF     <br>
+B    |-     |C     |-     <br> <br>
+C    |-     |-     |D     <br> <br>
+D    |E     |A     |-      <br> <br>
+E    |A     |-     |BF      <br> <br>
+F    |-     |-     |-      <br> <br>
+
+ e-Closure (A) :    ABF <br> <br>
+
+ e-Closure (B) :    B <br> <br>
+
+ e-Closure (C) :    CD <br> <br>
+
+ e-Closure (D) :    D <br> <br>
+
+ e-Closure (E) :    BEF <br> <br>
+
+ e-Closure (F) :    F <br> <br>
+
+ ********************************************************<br><br>
+ DFA TRANSITION STATE TABLE   <br>       
+
+
+ STATES OF DFA :        ABF, CDF, CD, BEF,<br><br>
+
+ GIVEN SYMBOLS FOR DFA:     0, 1,<br><br>
+
+STATES    |0    |1    <br><br>
+--------+-----------------------<br><br>
+ABF    |CDF     |CD     <br><br>
+CDF    |BEF     |ABF     <br><br>
+CD    |BEF     |ABF     <br><br>
+BEF    |ABF     |CD   <br><br>
+
+<b>Input :</b><br>
+    9<br>
+    2<br>
+    - - BH<br>
+    - - CE<br>
+    D - -<br>
+    - - G<br>
+    - F -<br>
+    - - G<br>
+    - - BH<br>
+    I - -<br>
+    - -  -<br>
+    
+    <b>Output :</b>
+
+        STATES OF NFA :        A, B, C, D, E, F, G, H, I,<br><br>
+        
+         GIVEN SYMBOLS FOR NFA:     0, 1, eps<br><br>
+        
+        
+         NFA STATE TRANSITION TABLE <br><br>
+
+         STATES    |0    |1    eps<br><br>
+--------+------------------------------------<br><br>
+A    |-     |-     |BH    <br>
+H    |I     |-     |-     <br>
+I    |-     |-     |-     <br>
+
+ e-Closure (A) :    ABCEH<br><br>
+
+ e-Closure (B) :    BCE<br><br>
+
+ e-Closure (C) :    C<br><br>
+
+ e-Closure (D) :    BCDEGH<br><br>
+
+ e-Closure (E) :    E<br><br>
+
+ e-Closure (F) :    BCEFGH<br><br>
+
+ e-Closure (G) :    BCEGH<br><br>
+
+ e-Closure (H) :    H<br><br>
+
+ e-Closure (I) :    I<br><br>
+
+
+********************************************************<br><br>
+
+DFA TRANSITION STATE TABLE      <br><br>    
+
+
+STATES OF DFA :        ABCEH, BCDEGHI, BCEFGH,<br><br>
+
+GIVEN SYMBOLS FOR DFA:     0, 1,<br><br>
+
+STATES    |0    |1    <br><br>
+--------+-----------------------<br><br>
+ABCEH    |BCDEGHI     |BCEFGH     <br><br>
+BCDEGHI    |BCDEGHI     |BCEFGH    <br> <br>
+BCEFGH    |BCDEGHI     |BCEFGH   </div> <br> <br>
+
+        
+        <b>Explanation :</b>First line of the input contains the number of states (N) of NFA. Second line of the input says the number of input symbols (S). In example1 number of states of NFA is 6 i.e.( A, B, C, D, E, F) and 2 input symbols i.e. ( 0, 1). Since we are working on NFA with ∈ move, ∈ will be added as an extra input symbol. The next N lines contains the transition values for every state of NFA. The value of ith row, jth column indicates transition value for ith state on jth input symbol. Here in example1 transition(A, 0) : FC. Output contains the NFA, ∈ closure for every states of the corresponding NFA and DFA obtained by converting the input NFA.  
+        
+
+
+<div class="box">    // C Program to illustrate how to convert e-nfa to DFA <br><br>
+ 
+#include <stdio.h> <br>
+#include <stdlib.h> <br>
+#include <string.h> <br>
+#define MAX_LEN 100 <br><br>
+ 
+char NFA_FILE[MAX_LEN];<br>
+char buffer[MAX_LEN];<br>
+int zz = 0;<br><br>
+ 
+// Structure to store DFA states and their<br>
+// status ( i.e new entry or already present)<br>
+struct DFA {<br>
+  char *states;<br>
+  int count;<br>
+} dfa;<br><br>
+ 
+int last_index = 0;<br>
+FILE *fp;<br>
+int symbols;<br><br>
+ 
+/* reset the hash map*/<br>
+void reset(int ar[], int size) {<br>
+  int i;<br><br>
+ 
+  // reset all the values of<br>
+  // the mapping array to zero<br>
+  for (i = 0; i < size; i++) {<br>
+    ar[i] = 0;<br>
+  }<br>
+}<br><br>
+ 
+// Check which States are present in the e-closure<br><br>
+ 
+/* map the states of NFA to a hash set*/<br>
+void check(int ar[], char S[]) {<br>
+  int i, j;<br><br>
+ 
+  // To parse the individual states of NFA<br>
+  int len = strlen(S);<br>
+  for (i = 0; i < len; i++) {<br><br>
+ 
+    // Set hash map for the position<br>
+    // of the states which is found<br>
+    j = ((int)(S[i]) - 65);<br>
+    ar[j]++;<br>
+  }<br>
+}<br><br>
+ 
+// To find new Closure States<br>
+void state(int ar[], int size, char S[]) {<br>
+  int j, k = 0;<br><br>
+ 
+  // Combine multiple states of NFA<br>
+  // to create new states of DFA<br>
+  for (j = 0; j < size; j++) {<br>
+    if (ar[j] != 0)<br>
+      S[k++] = (char)(65 + j);<br>
+  }<br><br>
+ 
+  // mark the end of the state<br>
+  S[k] = '\0';<br>
+}<br><br>
+ 
+// To pick the next closure from closure set<br>
+int closure(int ar[], int size) {<br>
+  int i;<br><br>
+ 
+  // check new closure is present or not<br>
+  for (i = 0; i < size; i++) {<br>
+    if (ar[i] == 1)<br>
+      return i;<br>
+  }<br>
+  return (100);<br>
+}<br><br>
+ 
+// Check new DFA states can be<br>
+// entered in DFA table or not<br>
+int indexing(struct DFA *dfa) {<br>
+  int i;<br><br>
+ 
+  for (i = 0; i < last_index; i++) {<br>
+    if (dfa[i].count == 0)<br>
+      return 1;<br>
+  }<br>
+  return -1;<br>
+}<br><br>
+ 
+/* To Display epsilon closure*/<br>
+void Display_closure(int states, int closure_ar[],<br>
+                     char *closure_table[],<br>
+                     char *NFA_TABLE[][symbols + 1],<br>
+                     char *DFA_TABLE[][symbols]) {<br>
+  int i;<br>
+  for (i = 0; i < states; i++) {<br>
+    reset(closure_ar, states);<br>
+    closure_ar[i] = 2;<br><br>
+ 
+    // to neglect blank entry<br>
+    if (strcmp(&NFA_TABLE[i][symbols], "-") != 0) {<br><br>
+ 
+      // copy the NFA transition state to buffer<br>
+      strcpy(buffer, &NFA_TABLE[i][symbols]);<br>
+      check(closure_ar, buffer);<br>
+      int z = closure(closure_ar, states);<br><br>
+ 
+      // till closure get completely saturated<br>
+      while (z != 100)<br>
+      {<br>
+        if (strcmp(&NFA_TABLE[z][symbols], "-") != 0) {<br>
+          strcpy(buffer, &NFA_TABLE[z][symbols]);<br><br>
+ 
+          // call the check function<br>
+          check(closure_ar, buffer);<br>
+        }<br>
+        closure_ar[z]++;<br>
+        z = closure(closure_ar, states);<br>
+      }<br>
+    }<br><br>
+ 
+    // print the e closure for every states of NFA<br>
+    printf("\n e-Closure (%c) :\t", (char)(65 + i));<br><br>
+ 
+    bzero((void *)buffer, MAX_LEN);<br>
+    state(closure_ar, states, buffer);<br>
+    strcpy(&closure_table[i], buffer);<br>
+    printf("%s\n", &closure_table[i]);<br>
+  }<br>
+}<br><br>
+ 
+/* To check New States in DFA */<br>
+int new_states(struct DFA *dfa, char S[]) {<br><br>
+ 
+  int i;<br><br>
+ 
+  // To check the current state is already<br>
+  // being used as a DFA state or not in<br>
+  // DFA transition table<br>
+  for (i = 0; i < last_index; i++) {<br>
+    if (strcmp(&dfa[i].states, S) == 0)<br>
+      return 0;<br>
+  }<br><br>
+ 
+  // push the new<br>
+  strcpy(&dfa[last_index++].states, S);<br><br>
+ 
+  // set the count for new states entered<br>
+  // to zero<br>
+  dfa[last_index - 1].count = 0;<br>
+  return 1;<br>
+}<br><br>
+ 
+// Transition function from NFA to DFA<br>
+// (generally union of closure operation )<br>
+void trans(char S[], int M, char *clsr_t[], int st,<br>
+               char *NFT[][symbols + 1], char TB[]) {<br>
+  int len = strlen(S);<br>
+  int i, j, k, g;<br>
+  int arr[st];<br>
+  int sz;<br>
+  reset(arr, st);<br>
+  char temp[MAX_LEN], temp2[MAX_LEN];<br>
+  char *buff;<br><br>
+ 
+  // Transition function from NFA to DFA<br>
+  for (i = 0; i < len; i++) {<br><br>
+ 
+    j = ((int)(S[i] - 65));<br>
+    strcpy(temp, &NFT[j][M]);<br><br>
+ 
+    if (strcmp(temp, "-") != 0) {<br>
+      sz = strlen(temp);<br>
+      g = 0;<br><br>
+ 
+      while (g < sz) {<br>
+        k = ((int)(temp[g] - 65));<br>
+        strcpy(temp2, &clsr_t[k]);<br>
+        check(arr, temp2);<br>
+        g++;<br>
+      }<br>
+    }<br>
+  }<br><br>
+ 
+  bzero((void *)temp, MAX_LEN);<br>
+  state(arr, st, temp);<br>
+  if (temp[0] != '\0') {<br>
+    strcpy(TB, temp);<br>
+  } else<br>
+    strcpy(TB, "-");<br>
+}<br><br>
+ 
+/* Display DFA transition state table*/<br>
+void Display_DFA(int last_index, struct DFA *dfa_states,<br>
+                 char *DFA_TABLE[][symbols]) {<br>
+  int i, j;<br>
+  printf("\n\n********************************************************\n\n");<br>
+  printf("\t\t DFA TRANSITION STATE TABLE \t\t \n\n");<br>
+  printf("\n STATES OF DFA :\t\t");<br><br>
+ 
+  for (i = 1; i < last_index; i++)<br>
+    printf("%s, ", &dfa_states[i].states);<br>
+  printf("\n");<br>
+  printf("\n GIVEN SYMBOLS FOR DFA: \t");<br><br>
+ 
+  for (i = 0; i < symbols; i++)<br>
+    printf("%d, ", i);<br>
+  printf("\n\n");<br>
+  printf("STATES\t");<br><br>
+ 
+  for (i = 0; i < symbols; i++)<br>
+    printf("|%d\t", i);<br>
+  printf("\n");<br><br>
+ 
+  // display the DFA transition state table<br>
+  printf("--------+-----------------------\n");<br>
+  for (i = 0; i < zz; i++) {<br>
+    printf("%s\t", &dfa_states[i + 1].states);<br>
+    for (j = 0; j < symbols; j++) {<br>
+      printf("|%s \t", &DFA_TABLE[i][j]);<br>
+    }<br>
+    printf("\n");<br>
+  }<br>
+}<br><br>
+ 
+// Driver Code<br>
+int main() {<br>
+  int i, j, states;<br>
+  char T_buf[MAX_LEN];<br><br>
+ 
+  // creating an array dfa structures<br>
+  struct DFA *dfa_states = malloc(MAX_LEN * (sizeof(dfa)));<br>
+  states = 6, symbols = 2;<br><br>
+ 
+  printf("\n STATES OF NFA :\t\t");<br>
+  for (i = 0; i < states; i++)<br><br>
+ 
+    printf("%c, ", (char)(65 + i));<br>
+  printf("\n");<br>
+  printf("\n GIVEN SYMBOLS FOR NFA: \t");<br><br>
+ 
+  for (i = 0; i < symbols; i++)<br><br>
+ 
+    printf("%d, ", i);<br>
+  printf("eps");<br>
+  printf("\n\n");<br>
+  char *NFA_TABLE[states][symbols + 1];<br><br>
+ 
+  // Hard coded input for NFA table<br>
+  char *DFA_TABLE[MAX_LEN][symbols];<br>
+  strcpy(&NFA_TABLE[0][0], "FC");<br>
+  strcpy(&NFA_TABLE[0][1], "-");<br>
+  strcpy(&NFA_TABLE[0][2], "BF");<br>
+  strcpy(&NFA_TABLE[1][0], "-");<br>
+  strcpy(&NFA_TABLE[1][1], "C");<br>
+  strcpy(&NFA_TABLE[1][2], "-");<br>
+  strcpy(&NFA_TABLE[2][0], "-");<br>
+  strcpy(&NFA_TABLE[2][1], "-");<br>
+  strcpy(&NFA_TABLE[2][2], "D");<br>
+  strcpy(&NFA_TABLE[3][0], "E");<br>
+  strcpy(&NFA_TABLE[3][1], "A");<br>
+  strcpy(&NFA_TABLE[3][2], "-");<br>
+  strcpy(&NFA_TABLE[4][0], "A");<br>
+  strcpy(&NFA_TABLE[4][1], "-");<br>
+  strcpy(&NFA_TABLE[4][2], "BF");<br>
+  strcpy(&NFA_TABLE[5][0], "-");<br>
+  strcpy(&NFA_TABLE[5][1], "-");<br>
+  strcpy(&NFA_TABLE[5][2], "-");<br>
+  printf("\n NFA STATE TRANSITION TABLE \n\n\n");<br>
+  printf("STATES\t");<br><br>
+ 
+  for (i = 0; i < symbols; i++)<br>
+    printf("|%d\t", i);<br>
+  printf("eps\n");<br><br>
+ 
+  // Displaying the matrix of NFA transition table<br>
+  printf("--------+------------------------------------\n");<br>
+  for (i = 0; i < states; i++) {<br>
+    printf("%c\t", (char)(65 + i));<br><br>
+ 
+    for (j = 0; j <= symbols; j++) {<br>
+      printf("|%s \t", &NFA_TABLE[i][j]);<br>
+    }<br>
+    printf("\n");<br>
+  }<br>
+  int closure_ar[states];<br>
+  char *closure_table[states];<br><br>
+ 
+  Display_closure(states, closure_ar, closure_table, NFA_TABLE, DFA_TABLE);<br>
+  strcpy(&dfa_states[last_index++].states, "-");<br><br>
+ 
+  dfa_states[last_index - 1].count = 1;<br>
+  bzero((void *)buffer, MAX_LEN);<br><br>
+ 
+  strcpy(buffer, &closure_table[0]);<br>
+  strcpy(&dfa_states[last_index++].states, buffer);<br><br>
+ 
+  int Sm = 1, ind = 1;<br>
+  int start_index = 1;<br><br>
+ 
+  // Filling up the DFA table with transition values<br>
+  // Till new states can be entered in DFA table<br>
+  while (ind != -1) {<br>
+    dfa_states[start_index].count = 1;<br>
+    Sm = 0;<br>
+    for (i = 0; i &lt; symbols; i++) {<br><br>
+ 
+      trans(buffer, i, closure_table, states, NFA_TABLE, T_buf);<br><br>
+ 
+      // storing the new DFA state in buffer<br>
+      strcpy(&DFA_TABLE[zz][i], T_buf);<br><br>
+ 
+      // parameter to control new states<br>
+      Sm = Sm + new_states(dfa_states, T_buf);<br>
+    }<br>
+    ind = indexing(dfa_states);<br>
+    if (ind != -1)<br>
+      strcpy(buffer, &dfa_states[++start_index].states);<br>
+    zz++;<br>
+  }<br>
+  // display the DFA TABLE<br>
+  Display_DFA(last_index, dfa_states, DFA_TABLE);<br><br>
+ 
+  return 0;</div> <br><br>
+}
+
+
+
+        <p><b>Use of NFA with ∈ move :</b> If we wish to build an FA that accepts a language, it can be difficult or even impossible to build a direct NFA or DFA. However, if NFA with movements is utilized, the transitional diagram can be simply produced and presented.</p>
+</body>

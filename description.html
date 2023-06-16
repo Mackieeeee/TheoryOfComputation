@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    .box1{
+        text-align: center;
+        font-size: 17px;
+    }
+
+
+
+</style>
+<body>
+    <h1>Introduction of Theory of Computation</h1>
+    <p><b>Automata</b> theory (also known as <b>Theory of computing</b>) is a theoretical rule of computer science and mathematics that focuses on the logic of computing in relation to simple machines known as automata. Scientists can use Automata* to learn how machines calculate functions and solve issues. The primary objective for creating Automata Theory was to create tools for describing and analyzing the dynamic behavior of discrete systems. Automata is derived from the word "Automaton," which is related to "Automation."</p>
+        <br><br>
+        <h2>Basic Terminologies of Theory of Computation:</h2><br>
+        <p>Let us now explore the fundamental terminology that are vital and commonly used in the Theory of Computation. </p><br>
+        <h2>Symbol: </h2><br>
+        <img src="pictures/strng.png" alt=""><br>
+        <p>A symbol (also known as a <b>character</b>) is the simplest building block that can be any alphabet, letter, or image.</p>
+        <h2>Alphabets (Σ):</h2>
+        <p>Alphabets are a collection of symbols that are always <b><i>finite</i></b>.</p><br>
+        <img src="pictures/alpha1.png" alt=""><br>
+        <h2>String:</h2>
+        <p>A string is a <b><i>finite</i></b> sequence of symbols from a certain alphabet. A string is commonly denoted as <b><i>w</i></b>, and its length is represented as <b><i>|w|</i></b>. </p><br>
+        <div class="box"><p><i>Empty string is the string with<br>
+            zero occurrence of symbols, <br>
+            represented as ε.</i></p></div>
+            <div class="box"><p><b>Number of Strings (of length 2) 
+                that can be generated over the alphabet {a, b}:</b><br>
+                                     -    -<br>
+                                     a    a<br>
+                                     a    b<br>
+                                     b    a<br>
+                                     b    b<br><br>
+
+                                    
+Length of String |w| = 2<br>
+Number of Strings = 4</p><br><br>
+
+<p><b>Conclusion:</b><br>
+    For alphabet {a, b} with length <b>n</b>, number of <br>
+    strings can be generated = <b>2n</b>.</p></div><br>
+    <div class="box"><p><i><b>Note:</b> If the number of symbols in the alphabet Σ is represented by |Σ|, then a<br> number of strings of length n, possible over Σ is <b>|Σ|n.</b></i></p></div><br>
+    <h2>Closure Representation in TOC:</h2>
+    <p><b>L+:</b> is a <b>Positive Closure</b> that represents a collection of all strings except Null and ε-strings.</p><br><br>
+        <p><b>L*:</b> <b>"Kleene Closure"</b> represents the recurrence of specific alphabets.<br>
+        provided language alphabets from zero to the infinite number of times. In which the ε-string is also present.<br><br>
+        
+        Based on the preceding two statements, it is possible to conclude:</p><br>
+        <div class="box"><p><b>L* = εL+</b></p></div>       
+        <div class="box"><b>Example:
+            (a) Regular expression for language accepting all combination of g's over Σ={g}:</b></p>
+            <div class="box1"><b>R = g*<br>
+                R={ε,g,gg,ggg,gggg,ggggg,...}</b></div><br>
+                <p><b>(b) Regular Expression for language accepting all combination of g's over Σ={g} :</b></p><br><br>
+                <div class="box1"><b>R = g+<br>
+          R={g,gg,ggg,gggg,ggggg,gggggg,...}</b></div></div>
+          <p><b>Note:</b> Σ* is a set of all possible strings(often power set(need not be unique here or<br> we can say multiset) of string) So this implies that <b>language</b> is a subset of Σ*.This is<br> also called a <b>“Kleene Star”.</b></p><br>
+          <p>Kleene Star is also known as a "Kleene Operator" or a "Kleene Closure". Kleene Star is used by engineers and IT professionals to create all strings that must be included from a given set of characters or symbols. It is a type of Unary operator. All individual elements of a given string must be included in Kleene Star technique, but additional elements or combinations of these alphabets can be incorporated to any extent.</p>
+          <div class="box"><p><b>Example:</b><br><br>
+            <b>Input String: "GFG".</b><br>
+            Σ* = { ε,"GFG","GGFG","GGFG","GFGGGGGGGG","GGGGGGGGFFFFFFFFFGGGGGGGG",...}<br>  
+            (Kleene Star is an infinite set but if we provide any grammar rules then it can work as a finite set.<br>
+            Please note that we can include ε string also in given Kleene star representation.)</p></div><br>
+            <h2>Language:</h2><br>
+            <p>A language is a set of strings, chosen from some Σ* or we can say- ‘A language is a<br> subset of Σ* ‘. A language that can be formed over ‘ Σ ‘ can be <b>Finite</b> or <b>Infinite.</b></p>
+            <div class="box"><p>Example of Finite Language:<br> 
+                L1 = { set of string of 2 }<br>
+               L1 = { xy, yx, xx, yy }<br><br>
+               </p></div>
+               </div>
+               <div class="box">
+      <p>Example of Infinite Language:<br>
+               L1 = { set of all strings starts with 'b' }<br>
+               L1 = { babb, baa, ba, bbb, baab, ....... }</p><br>
+            </div>
+               <section>
+               <div class="box">
+                <p>Example:
+                    Input String: "GFG". <br>
+                    Σ* = { ε,"GFG","GGFG","GGFG","GFGGGGGGGG","GGGGGGGGFFFFFFFFFGGGGGGGG",...}  <br>
+                    (Kleene Star is an infinite set but if we provide any grammar rules then it can work as a finite set. <br>
+                    Please note that we can include ε string also in given Kleene star representation.)</p>
+               </div>
+</section>
+</body>
+</html>

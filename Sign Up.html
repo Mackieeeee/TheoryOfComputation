@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Theory Of Computation</title>
+    <style>
+        .logo {
+            color: White;
+            text-decoration: none;
+            margin: 0 0 0 40px;
+            font-size: 40px;
+        }
+
+        .icon {
+
+            margin-top: 20px;
+        }
+
+        body {
+            background-color: #e8e9ff;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+
+        }
+
+        header {
+            background-color: #2a56a3;
+            padding: 8px;
+            box-shadow: 0 0 3px #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+
+        }
+
+        header li {
+            display: inline;
+            padding-left: 45px;
+
+        }
+
+        header li a {
+            color: black;
+            text-decoration: none;
+            padding: 30px;
+            transition: .3s ease;
+            font-size: 21px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        }
+
+        header ul {
+            margin-right: 20%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-bottom: 30px;
+            font-style: monospace;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        button:hover {
+            opacity: 1;
+        }
+
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #f44336;
+        }
+
+        .cancelbtn,
+        .signupbtn {
+            float: left;
+            width: 50%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="icon">
+            <a class="logo">T.O.C</a>
+
+        </div>
+        <ul>
+            <li><a href="TheoryOfComputation.html">Home</a></li>
+            <li><a href="task.html">Topics</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Contacts.html">Contacts</a></li>
+            <li><a href="Sign Up.html">Join</a></li>
+        </ul>
+    </header>
+
+
+
+</body>
+<form action="action_page.php" style="border:1px solid #ccc">
+    <div class="container">
+        <h1>Sign Up</h1>
+        <h3>Please fill in this form to create an account.</h3>
+        <hr>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
+
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+    </div>
+</form>
+
+</html>

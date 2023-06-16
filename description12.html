@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    ul{
+    font-size: 20px;
+    font-style: oblique;
+}
+ol{
+    font-size: 20px;
+    font-style: oblique;
+}
+
+
+</style>
+<body>
+    <h1>Generating regular expression from Finite Automata</h1><br>
+    <p>Prerequisite – <a href="description2.html" target="description">Introduction of FA</a>, <a href="description3.html" target="description">Regular expressions, grammar and language</a>, <a href="description8.html" target="description">Designing FA from Regular Expression</a>. There are two methods to convert FA to the regular expression:</p><br>
+    <h2>1. State Elimination Method:</h2><br>
+    <ul>
+        <li><b>Step 1</b> - If the start state is accepting or has transitions in, add a new non-accepting start state and a €-transition between the new and prior start states.</li><br>
+        <li><b>Step 2</b> - Add a new accepting state, make all other states non-accepting, and add a €-transition from each former accepting state to the new accepting state if there is more than one acceptable state or if the only accepting state has transitioned out.</li><br>
+        <li><b>Step 3</b> - Remove each non-start, non-accepting state in turn and edit transitions accordingly.</li><br>
+    </ul><br>
+    <h3>Example :</h3><br>
+    <img src="pictures/Regular_Expression_from_automata_1.jpg" alt=""><br>
+   <h3>Solution:</h3><br>
+   <img src="pictures/Regular_Expression_from_automata_3.jpg" alt=""><br>
+   <img src="pictures/Regular_Expression_from_automata_4.jpg" alt=""><br>
+   <img src="pictures/Regular_Expression_from_automata_5.jpg" alt=""><br>
+   <img src="pictures/Regular_Expression_from_automata_6.jpg" alt=""><br>
+   <img src="pictures/Regular_Expression_from_automata_7.jpg" alt=""><br>
+   <h3>2. Arden’s Theorem: </h3><br>
+   <p>Let P and Q be 2 regular expressions. If P does not contain null string, then the following equation in R, viz R = Q + RP, Has a unique solution by R = QP*<br> <b>Assumptions –</b></p><br>
+   <ul>
+    <li>The transition diagram should not have €-moves.</li><br>
+    <li>It must have only one initial state.</li><br>
+   </ul><br>
+   <h3>Using Arden’s Theorem to find Regular Expression of Deterministic Finite automata –</h3><br>
+   <ol>
+    <li>For getting the regular expression for the automata we first create equations of the given form for all the states <b>q<sub>1</sub> = q<sub>1</sub>w<sub>11</sub> +q<sub>2</sub>w<sub>21</sub> +…+q<sub>n</sub>w<sub>n1</sub> +€ (q<sub>1</sub> is the initial state) q<sub>2</sub> = q<sub>1</sub>w<sub>12</sub> +q<sub>2</sub>w<sub>22</sub> +…+q<sub>n</sub>w<sub>n2</sub> . . . q<sub>n</sub> = q<sub>1</sub>w<sub>1n</sub> +q<sub>2</sub>w<sub>2n</sub> +…+q<sub>n</sub>w<sub>nn</sub></b> w<sub>ij</sub> is the regular expression representing the set of labels of edges from q<sub>i</sub> to q<sub>j</sub></li>
+    <li>Then we solve these equations to produce the equation for qi in terms of wij, which is the needed solution, where qi is a final state.</li>
+   </ol><br>
+   <h3>Example:</h3><br>
+   <img src="pictures/Regular_Expression_from_automata_8-1.jpg" alt=""><br>
+   <p><b>Solution :</b>- Here the initial state is q<sub>1</sub> and the final state is q<sub>1</sub>. The equations for the three states q<sub>1</sub>, q<sub>2</sub>, and q<sub>3</sub> are as follows ? q<sub>1</sub> = q<sub>1</sub>a + q<sub>3</sub>a + € ( € move is because q<sub>1</sub> is the initial state) q<sub>2</sub> = q<sub>1</sub>b + q<sub>2</sub>b + q<sub>3</sub>b q<sub>3</sub> = q<sub>2</sub>a Now, we will solve these three equations ? q<sub>2</sub> = q<sub>1</sub>b + q<sub>2</sub>b + q<sub>3</sub>b = q<sub>1</sub>b + q<sub>2</sub>b + (q<sub>2</sub>a)b (Substituting value of q<sub>3</sub>) = q<sub>1</sub>b + q<sub>2</sub>(b + ab) = q<sub>1</sub> (b + ab)* (Applying Arden’s Theorem) q<sub>1</sub> = q<sub>1</sub>a + q<sub>3</sub>a + € = q<sub>1</sub>a + q<sub>2</sub>aa + € (Substituting value of q<sub>3</sub>) = q<sub>1</sub>a + q<sub>1</sub>b(b + ab*)aa + € (Substituting value of q<sub>2</sub>) = q<sub>1</sub>(a + b(b + ab)*aa) + € = € (a+ b(b + ab)*aa)* = (a + b(b + ab)*aa)* Hence, the regular expression is (a + b(b + ab)*aa)*</p>
+
+</body>
+</html>

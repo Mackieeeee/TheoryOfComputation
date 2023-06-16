@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+</style>
+<body>
+    <h1>Union and Intersection of Regular languages with CFL</h1><br>
+    <p>Prerequisite – Chomsky Hierarchy, Regular Languages</p><br>
+    <p>As we all know, languages accepted by <b>finite automata</b> are known as <b>regular</b> languages, while those accepted by <b>push down</b> automata are known as <b>context free</b> languages. However, when it comes to the union or intersection of these two languages, some people struggle to determine whether the intersection results in a regular or a context-free language.</p><br>
+    <p>The first thing to notice is that any regular language is context-free. The reason for this is pretty straightforward. One way to call a language regular is to design its equivalent finite automata, or in other words, if we can design a finite automata for a specific language, then only that language is called regular. The same holds true for context free languages; if we can design a push down automata for a specific language, then only that language is called context free.</p><br>
+    <p>Now a push down automata in simple words is actually a finite automata with a <b>memory</b> provided to it as <b>infinite stack</b>. What you need to observe that is possible to design a finite automata for a particular language then it is also possible to design its equivalent push down automata what we have to do is just not to use the infinite stack available in it. Its that simple. Observe this and finally what will you get is that for every regular language it is possible to design finite automata and thus push down automata. This is the reason why every regular language can also be called context-free or in other words regular languages are subset of context-free languages.</p><br>
+    <p><b>Union of Regular language with context free language –</b><br>Since all regular languages are context-free, combining them produces a context-free language. However, it is usually helpful to explain by using an example.<br><br> Let’s take a language L1 = {0*1*} (regular) and L2 = {0^n1^n |n>=0} (context-free)
+        And let L=L1 U L2 which will result in union of both these languages and that will be :
+        
+        L = {0*1*} which is regular language but since every regular language is context-free. So, we can say the union of two always results in context-free language.</p><br>
+        <p><b>Intersection of Regular language with context-free language –</b><br>Because we now know that all regular languages are subsets of context-free, understanding the union of two is simple, but when we discuss intersection, the solution is context-free language. Yes, the union of a regular and a context-free language always yields a context-free language.<br><br>Let’s again take the above example in which L1 and L2 are same but now let
+            L= L1 ∩ L2 which will easily result in
+            L={0^n1^n | n>=0} which is context-free .
+            You can take more such examples and verify that the union and intersection of a regular language and a context-free language always results in a context-free language
+        </p>
+
+</body>
+</html>

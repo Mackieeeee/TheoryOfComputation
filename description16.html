@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+        background-color: #e8e9ff;
+
+    }
+    .box1{
+       background: #afb1e3;
+       width: 50%;
+       margin-left: 30px;
+       border-radius: 10px;
+
+    }
+
+    
+.box{
+       background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+h1{
+        text-align:justify;
+        color:#03074a
+    }
+h2{
+        text-align:justify;
+        color:#03074a;
+    }
+img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h3{
+        text-align:justify;
+        color:#03074a;
+    }
+    ul{
+    font-size: 20px;
+    font-style: oblique;
+}
+table,th,td{
+        font-size: 20px;
+        font-style: oblique;
+        text-align: center;
+        border: 2px solid #000;
+        border-collapse: collapse;
+    }
+
+</style>
+<body>
+    <h1>DFA of a string with at least two 0’s and at least two 1’s</h1><br><br>
+    <p>
+        <b>Problem – </b>Draw deterministic finite automata (DFA) of a string with at least two 0’s and at least two 1’s. <br>
+        The first thing that come to mind after reading this question us that we count the number of 1’s and 0’s. <br>
+        Thereafter if they both are at least 2 the string is accepted else not accepted. But we do not have any concept of memory in a DFA so we cannot do it by this method.<br><br>
+        <div class="box">input  : 1 0 1 1 0 0<br>
+        Output : Accepted</div><br>
+        
+        <div class="box">Input  : 1 1 1 0 1 <br>
+        Output : Not accepted</div><br><br>
+
+      <b>  Approach Used –</b> The first thing we observe is that both 0’s and 1’s should be at least 2. <br>
+        If any of these is less than 2, then string will not be accepted. In this string will be accepted in only last case where both 0’s and 1’s will be at least 2.<br>
+
+    </p>
+    <table>
+        <tr bgcolor="green">
+            <th>State</th>
+            <th>Count of 0</th>
+            <th>Count of 1</th>
+            </tr>
+          
+            <tr bgcolor="green">
+                <td>Q0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q1</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q2</td>
+                <td>0</td>
+                <td>	>=2</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q3</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q4</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q5</td>
+                <td>1</td>
+                <td>>=2</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q6</td>
+                <td>	>=2</td>
+                <td>0</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q7</td>
+                <td>	>=2</td>
+                <td>1</td>
+            </tr>
+            <tr bgcolor="green">
+                <td>Q8 ACCEPTED</td>
+                <td>	>=2</td>
+                <td>	>=2</td>
+            </tr>
+        
+        </table>
+            <p>Initially count of both 0 and 1 is zero and we are on state Q0.</p><br>
+        <ul>
+            <li><b>Step-1:</b> If input is 1 then count of 1 increases to 1. Goto state Q1 If input is 0 then count of 0 increases to 1. Goto state Q3</li>
+            <li><b>Step-2:</b>: If input is 1 then count of 1 increases to 2. Goto state Q2 If input is 0 then count of 0 increases to 1. Goto state Q4</li>
+            <li><b>Step-3:</b> If input is 1 then count of 1 keeps increasing by 1. Remain in the same state If input is 0 then count of 0 increases to 1. Goto state Q5</li>
+            <li><b>Step-4:</b> If input is 1 then count of 1 increases to 1. Goto state Q4 If input is 0 then count of 0 increases to 2. Goto state Q6</li>
+            <li><b>Step-5:</b> If input is 1 then count of 1 increases to 2. Goto state Q5 If input is 0 then count of 0 increases to 2. Goto state Q7</li>
+            <li><b>Step-6:</b> If input is 1 then count of 1 keeps increasing by 1. Remain in the same state. If input is 0 then count of 0 increases to 2. Goto state Q8</li>
+            <li><b>Step-7:</b> If input is 1 then count of 1 increases to 1. Goto state Q7 If input is 0 then count of 0 keeps increasing by 1. Remain in the same state.</li>
+            <li><b>Step-8:</b> If input is 1 then count of 1 increases to 2. Goto state Q8 If input is 0 then count of 0 keeps increasing by 1. Remain in the same state.</li>
+            <li><b>Step-9:</b> If input is 1 then count of 1 keeps increasing by 1. Remain in the same state. If input is 0 then count of 0 keeps increasing by 1. Remain in the same state. If string is finished then ACCEPTED</li>
+        </ul>
+        <img src="pictures/TOC7.jpg" alt="" width="50%"><br>
+
+</body>
+</html>

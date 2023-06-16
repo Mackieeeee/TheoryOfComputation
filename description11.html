@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+</style>
+<body>
+    <h1>Minimization of DFA</h1><br>
+    <p>DFA minimization refers to the process of transforming a given DFA to its equivalent DFA with the fewest amount of states. DFA minimization, also known as DFA optimization, employs a partitioning procedure.</p><br>
+    <p><b>Minimization of DFA</b><br> 
+        Suppose there is a DFA D < Q, Σ, q0, δ, F > which recognizes a language L.<br> Then the minimized DFA D < Q’, Σ, q0, δ’, F’ > can be constructed for language L as: <br>
+        <b>Step 1:</b> We're going to divide Q (the set of states) into two groups. One set will include all final states, while the other will include non-final states. This partition is known as P<sub>0</sub>.<br> 
+        <b>Step 2:</b> Initialize k = 1 <br>
+        <b>Step 3:</b> Determine P<sib>k</sib> by splitting the various sets of P<sub>k-1</sub>. We will take every feasible pair of states in each P<sub>k-1</sub> set. If two states of a set can be distinguished, we will divide the sets in P<sub>k</sub> into distinct sets.<br>
+        <b>Step 4:</b> Stop when P<sub>k</sub> = P<sub>k-1</sub> (No change in partition)<br>
+        <b>Step 5:</b> All of the states in one set are combined into one. The number of states in the reduced DFA will be equal to the number of sets in P<sub>k</sub>.<br>
+        How can I tell if two states in partition P<sub>k</sub> are distinguishable? 
+        In partition P<sub>k</sub>, two states (qi, qj) can be distinguished if, for every input symbol a, (qi, a) and (qj, a) are in separate sets in partition P<sub>k-1</sub>. 
+        Example 
+
+        Consider the DFA depicted in the figure. <br>
+    </p>
+    <img src="pictures/asd123.png" alt="" class="src" width="50%">
+   <p><b>Step 1.</b> P0 will have two sets of states. One set will contain q1, q2, q4 which are final states of DFA and 
+    another set will contain remaining states.
+     So P0 = { { q1, q2, q4 }, { q0, q3, q5 } }. 
+   <b>Step 2.</b> To calculate P1, we will check whether sets of partition P0 can be partitioned or not: </p><br>
+   <h3>i) For set { q1, q2, q4 } : </h3>
+   <p>δ ( q1, 0 ) = δ ( q2, 0 ) = q2 and δ ( q1, 1 ) = δ ( q2, 1 ) = q5, So q1 and q2 are not distinguishable. <br>
+    Similarly, δ ( q1, 0 ) = δ ( q4, 0 ) = q2 and δ ( q1, 1 ) = δ ( q4, 1 ) = q5, So q1 and q4 are not distinguishable. <br>
+    Since, q1 and q2 are not distinguishable and q1 and q4 are also not distinguishable, So q2 and q4 are not <br>
+    distinguishable. So, { q1, q2, q4 } set will not be partitioned in P1.<br> </p>
+
+    <p><b>ii) For set { q0, q3, q5 } :  </b><br>
+        δ ( q0, 0 ) = q3 and δ ( q3, 0 ) = q0 <br>
+δ ( q0, 1) = q1 and δ( q3, 1 ) = q4 <br>
+Moves of q0 and q3 on input symbol 0 are q3 and q0 respectively which are in same set in partition P0. <br>
+Similarly, Moves of q0 and q3 on input symbol 1 are q1 and q4 which are in same set in partition P0. So, q0 and q3 are not distinguishable. <br>
+δ ( q0, 0 ) = q3 and δ ( q5, 0 ) = q5 and δ ( q0, 1 ) = q1 and δ ( q5, 1 ) = q5 <br>
+Moves of q0 and q5 on input symbol 1 are q1 and q5 respectively which are in different set in partition P0.<br>
+ So, q0 and q5 are distinguishable. So, set { q0, q3, q5 } will be partitioned into { q0, q3 } and { q5 }. So, <br>
+P1 = { { q1, q2, q4 }, { q0, q3}, { q5 } } <br>
+To calculate P2, we will check whether sets of partition P1 can be partitioned or not: <br>
+    </p>
+    <p><b>iii)For set { q1, q2, q4 } : <br></b>δ ( q1, 0 ) = δ ( q2, 0 ) = q2 and δ ( q1, 1 ) = δ ( q2, 1 ) = q5, So q1 and q2 are not distinguishable. <br>
+        Similarly, δ ( q1, 0 ) = δ ( q4, 0 ) = q2 and δ ( q1, 1 ) = δ ( q4, 1 ) = q5, So q1 and q4 are not distinguishable.<br>
+        Since, q1 and q2 are not distinguishable and q1 and q4 are also not distinguishable, So q2 and q4 are not distinguishable. <br>
+        So, { q1, q2, q4 } set will not be partitioned in P2. <br><br>
+    </p>
+    <p><b>iv)For set { q0, q3 } :<br> </b>
+        δ ( q0, 0 ) = q3 and δ ( q3, 0 ) = q0 <br>
+        δ ( q0, 1 ) = q1 and δ ( q3, 1 ) = q4<br>
+        Moves of q0 and q3 on input symbol 0 are q3 and q0 respectively which are in same set in partition P1.<br> 
+        Similarly, Moves of q0 and q3 on input symbol 1 are q1 and q4 which are in same set in partition P1. <br>
+        So, q0 and q3 are not distinguishable. <br><br>
+
+     </p>
+     <p><b>v) For set { q5 }:<br> </b>
+        Since we have only one state in this set, it can’t be further partitioned. So, <br>
+P2 = { { q1, q2, q4 }, { q0, q3 }, { q5 } } <br>
+Since, P1=P2. So, this is the final partition. Partition P2 means that q1, q2 and q4 states are merged into one.<br>
+ Similarly, q0 and q3 are merged into one. Minimized DFA corresponding to DFA of Figure 1 is shown in Figure 2 as: <br>
+
+    </p>
+    <img src="pictures/fig-22.png" alt="" class="src" width="50%">
+    <p><b>Question :<br></b>
+         Consider the given DFA. Which of the following is false? <br>
+        1. Complement of L(A) is context-free. <br>
+        2. L(A) = L ( ( 11 * 0 + 0 ) ( 0 + 1 )* 0* 1* ) <br>
+        3. For the language accepted by A, A is the minimal DFA. <br>
+        4. A accepts all strings over { 0, 1 } of length atleast two. <br></p>
+        <img src="pictures/fig-23.png" alt="" class="src" width="50%">
+        <p>A. 1 and 3 only <br>
+            B. 2 and 4 only <br>
+            C. 2 and 3 only <br>
+            D. 3 and 4 only <br></p>
+            <p><b>Solution :</b>bStatement 4 says, it will accept all strings of length atleast 2. <br>
+                But it accepts 0 which is of length 1. So, 4 is false. <br>
+                Statement 3 says that the DFA is minimal. We will check using the algorithm discussed above.<br>
+                P0 = { { q2 }, { q0, q1 } } <br>
+P1 = { q2 }, { q0, q1 } }. Since, P0 = P1, P1 is the final DFA. q0 and q1 can be merged.<br>
+ So minimal DFA will have two states. Therefore, statement 3 is also false. <br>
+So correct option is (D). <br>
+
+This article has been contributed by Sonal Tuteja. <br>
+
+Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.<br>
+
+            </p>
+            <h3>Advantages:</h3><br><br>
+           <p><b>Reduced Complexity:</b> Minimizing a DFA reduces its complexity by eliminating redundant states and transitions. <br>
+            The resulting minimized DFA is typically smaller and simpler, making it easier to understand, analyze, and modify.<br>
+             Minimization improves the efficiency of executing the DFA and reduces the resources required for its implementation.<br>
+
+            <b> Optimal Space Utilization:</b> When compared to the original DFA, a reduced DFA takes up less memory and storage space.<br> 
+             The reduced DFA uses fewer resources to store and display its states and transitions because duplicate states have been removed.<br>
+              This is useful when working with huge DFAs or in contexts with limited memory.<br>
+
+              <b>Language Equivalence:</b> Minimization ensures that the resulting DFA is language equivalent to the original DFA.<br>
+               That is, it recognizes the same language, accepting the same valid strings and rejecting the same invalid strings.<br>
+                Minimization preserves the language semantics while improving the DFA’s structure.<br><br>
+            </p>
+            <h3>Disadvantages:<br><br></h3>
+            <p><b>Increased Computational Complexity: </b>To minimize a DFA, execute state equivalence calculations and merge equivalent states. <br>
+                The computational complexity of the minimization method, particularly for large DFAs, can be significant.<br>
+                 The time and processing resources required for minimization expand in proportion to the size of the DFA, making it computationally expensive in some circumstances.<br><br>
+
+
+                <b>Additional Design and Analysis Effort:</b> Minimization necessitates more design and analysis effort than working with the original DFA.<br>
+                  Determining state equivalence and combining identical states frequently necessitates a thorough examination of the DFA's structure and transition patterns.<br>
+                   This method is time-consuming and error-prone, necessitating close attention to detail.<br>
+
+                  <b>Loss of Readability:</b> In some cases, the minimized DFA may become less readable and intuitive compared to the original DFA. <br>
+                   The merging of equivalent states may result in complex state representations, making it more challenging to interpret the DFA’s behavior or understand its structure.<br>
+
+                  <b>Limited to Deterministic Automata: </b>Minimization techniques are applicable only to deterministic automata like DFAs.<br>
+                    Non-deterministic automata, such as NFAs, cannot be directly minimized. <br>
+                    Converting an NFA to a DFA before minimizing it adds an additional step and may lead to an increase in the DFA’s size.<br>
+
+
+            </p>
+
+
+            
+</body>
+</html>

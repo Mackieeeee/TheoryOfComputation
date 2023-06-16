@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e8e9ff;
+
+    }
+
+    
+    .box{
+        background: #afb1e3;
+       width: 90%;
+       margin-left: 30px;
+       border-radius: 10px;
+       font-size: 18px;
+       font-style: monospace;
+
+    }
+    p{
+        margin-left: 30px;
+        font-size: 20px;
+        font-style: monospace;
+
+    }
+    h1{
+        text-align:justify;
+        color:#03074a
+    }
+    h2{
+        text-align:justify;
+        color:#03074a;
+    }
+
+</style>
+<body>
+    <h1>Arden’s Theorem in Theory of Computation</h1><br>
+    <p><b>Arden’s theorem</b> state that: “If P and Q are two regular expressions over $\sum_   , and if P does not contain &epsilon;_   , then the following equation in R given by R = Q + RP has a unique solution i.e., R = QP*.” That means, whenever we get any equation in the form of R = Q + RP, then we can directly replace it with R = QP*. So, here we will first prove that R = QP* is the solution of this equation and then prove that it is the unique solution of this equation. Let’s start by taking this equation as equation (i)</p><br>
+    <div class="box">R = Q + RP  ......(i)</div><br><br>
+        <p>Now, replacing R by R = QP*, we get,</p><br><br>
+        <div class="box">R = Q + QP*P </div><br><br>
+<p>Taking Q as common,</p><br><br>
+<div class="box">
+R = Q(&epsilon; + P*P)<br><br>
+R = QP*</div><br><br>
+<p>(As we know that &epsilon;_   + R*R = R*). As a result, proven. R = QP* thus becomes the answer to the equation R = Q + RP. Now we must demonstrate that this is the sole solution to the equation. Let me repeat this equation:  
+    </p><br><br>
+    <div class="box">R = Q + RP</div>    
+       <p> Now, replace R by R = Q + RP,</p><br><br>
+<div class="box">R = Q + (Q + RP)P<br><br>
+  = Q + QP + R<font size="6"><i>P</i></font><sup>2</sup></div><br><br>
+<p>Again, replace R by R = Q + RP:-</p><br><br>
+
+<div class="box">R = Q + QP + (Q + RP) <font size="6"><i>P</i></font><sup>2</sup>  = Q + QP + Q<font size="6"><i>P</i></font><sup>2</sup> + R<font size="6"><i>P</i></font><sup>3</sup>  = ...  = ...  =<br><br>
+  Q + QP + Q<font size="6"><i>P</i></font><sup>2</sup> + .. + Q<font size="6"><i>P</i></font><sup>n</sup> + R<font size="6"><i>P</i></font><sup>(n+1)</sup> <br><br></div>
+<p>Now, replace R by R = QP*, we get,</p><br><br>
+<div class="box">R = Q + QP + Q<font size="6"><i>P</i></font><sup>2</sup> + .. + Q<font size="6"><i>P</i></font><sup>n</sup> + QP*<font size="6"><i>P</i></font><sup>(n+1)</sup> </div>
+<p>Taking Q as common,</p>
+<div class="box">R = Q(&epsilon; + P + <font size="6"><i>P</i></font><sup>2</sup> + .. + <font size="6"><i>P</i></font><sup>n</sup> + P*<font size="6"><i>P</i></font><sup>(n+1)</sup>)  = QP*    [As &epsilon; + P + <font size="6"><i>P</i></font><sup>2</sup> + .. + <font size="6"><i>P</i></font><sup>n</sup> + P*<font size="6"><i>P</i></font><sup>(n+1)</sup> represent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the closure of P] </div>
+    </p>
+    <p>Hence proved. Thus, R = QP* is the unique solution of the equation R = Q + RP. <br><br>
+
+        Note :<br><br>
+        
+        Arden’s theorem is used to convert given finite automata to a regular expression.<br><br>
+        
+        To understand this theorem, we will solve an example:<br> <br>
+        
+        <h3>Example –</h3><br><br>
+        
+        <div class="box">q1 = q1.0  + &epsilon;_q2 = q1.1 + q2.0q3 = q2.1 + q3.0 + q3.1</div><br><br>
+        <p>Now,</p><br><br>
+        
+        <div class="box">q1 = &epsilon;_ + q1.0q1 = &epsilon;_.0*    [By Arden's theorem]q1 = 0*      [&epsilon;_R = R].'. q2 = 0*1 +q2.0    q2 = 0*10* </div>   <br><br>
+         <p>[Applying Arden’s theorem]. Hence, the value of q2 is 0*10*.</p><br><br>
+        
+        </p>
+
+</body>
+</html>
